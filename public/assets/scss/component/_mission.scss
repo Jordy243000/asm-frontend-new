@@ -1,0 +1,98 @@
+/*----------------------------------------
+    18. Mission CSS
+----------------------------------------*/
+@use "../abstract" as *;
+
+
+.mission{
+    &__img {
+        width: 50%;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        @media #{$md, $sm, $xs} {
+            width: 100%;
+            float: none;
+            position: static;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    &__content {
+        padding-top: 120px;
+        padding-right: 90px;
+        padding-bottom: 120px;
+        @media #{$xxl, $xl} {
+            padding-right: 65px;
+        }
+        @media #{$xl} {
+            padding-right: 30px;
+        }
+        .section__title{
+            @media #{$xl} {
+                margin-bottom: 25px;
+                .title{
+                    font-size: 34px;
+                }
+            }
+            
+        }
+        
+        @media #{$lg, $md, $sm, $xs} {
+            padding-right: 0;
+        }
+    }
+    &__text{
+        p {
+            padding-right: 60px;
+            margin-bottom: 45px;
+            @media #{$xl} {
+                margin-bottom: 20px;
+            }
+            @media #{$lg} {
+                padding-right: 10px;
+                margin-bottom: 20px;
+            }
+            @media #{$xxs} {
+                padding-right: 0px;
+                margin-bottom: 15px;
+            }
+        }
+        &-icon {
+            @media #{$xxs} {
+                display: none;
+            }
+        }
+        &-inner {
+            display: flex;
+            align-items: center;
+            row-gap: 40px;
+            img {
+                clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+                margin-right: 35px;
+                @media #{$xxs} {
+                    margin-right: 15px;
+                }
+            }
+            @media #{$xxs} {
+                flex-wrap: wrap;
+                margin-top: 40px;
+            }
+            .single-contact-info{
+                padding-bottom: 0;
+            }
+        }
+        &-contact{
+            li{
+                i {
+                    color: var(--clr-common-color-red);
+                    margin-right: 9px;
+                }
+            }
+        }
+    }
+}

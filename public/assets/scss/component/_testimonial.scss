@@ -1,0 +1,201 @@
+/*----------------------------------------
+    09. Testimonial CSS 
+----------------------------------------*/
+@use "../abstract" as *;
+
+.testimonial-one{
+    .testimonial{
+        &-shadow {
+            filter: drop-shadow(0px 0px 13px rgba(0, 0, 0, 0.06));
+        }
+        &-items {
+            @include transition(0.3s);
+            background:var(--clr-common-white);
+            box-shadow: 0px 16px 32px 0px rgba(0, 0, 0, 0.06);
+            padding: 45px 47px 50px 47px;
+            position: relative;
+            clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+            @media #{$md} {
+                padding: 45px 30px 50px 30px;
+            }
+            @media #{$xs} {
+                padding: 27px 50px 30px 50px;   
+            }
+            @media #{$xxs} {
+                padding: 27px 18px 30px 25px;   
+            }
+          }
+        
+        &__icon {
+            margin-bottom: 17px;
+            i {
+                color: var(--clr-common-color-red);
+            }
+          }
+        &__text {
+            margin-bottom: 35px;
+            p {
+                font-size: 20px;
+                line-height: 34px;
+              }
+          } 
+        &__auth{
+            display: flex;
+            align-items: center;
+            &-img{
+                img {
+                    @include border-radius(50%);
+                    width: 60px;
+                    height: 60px;
+                }
+            }
+            &-text{
+                h4 {
+                    margin-bottom: 1px;
+                }
+                span {
+                    font-size: 14px;
+                    text-transform: uppercase;
+                    color: var(--clr-common-color-red);
+                    font-weight: 600;
+                }
+        
+            }
+        }
+    
+        &__quote-icon{
+            position: absolute;
+            top: 25px;
+            right: 45px;
+            opacity: 0;
+            @include transition(0.3s);
+            i{
+                font-size: 150px;
+            }
+        }
+        
+    
+    }
+}
+
+.testimonial-space{
+    @media #{$xxs}{
+        padding-bottom: 65px;
+    }
+}
+
+.testimonial-active{
+    .swiper-slide-active{
+        .testimonial-items{
+            background: var(--clr-common-color-red);
+            p, h4, span, small, .rate i{
+                color: var(--clr-common-white);
+            }
+            .testimonial__quote-icon{
+                opacity: 0.2;
+            }
+        }
+        }
+    }
+
+
+.testimonial-box{
+    .swiper-container {
+        padding: 20px 0;
+    }
+}
+
+
+// Testimonial Two CSS 
+.testimonial-two{
+    margin-left: 72px;
+    margin-right: 3px;
+    @media #{$xl, $lg, $md, $sm, $xs} {
+        margin-left: 40px;
+        margin-right: 0px;
+    }
+    .testimonial{
+        &__item{
+            &-img {
+                width: 120px;
+                height: 120px;
+                position: absolute;
+                top: -22px;
+                left: -53px;
+                z-index: 200;
+                img{
+                    width: 100%;
+                    @include transition(1s);
+                    clip-path: polygon(16% 0, 100% 0, 84% 100%, 0 100%);
+                }
+                @media #{$lg} {
+                    width: 90px;
+                    height: 90px;
+                }
+                @media #{$xxs} {
+                    width: 80px;
+                    height: 80px;
+                }
+            }
+            &-rate{
+                i {
+                    color: var(--clr-common-color-red);
+                    @media #{$xxs} {
+                        font-size: 13px;
+                    }
+                }
+            }
+            &-auth{
+                h6{
+                    color: var(--clr-common-color-red);
+                }
+            }
+            &-bottom {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+            &-content{
+                @include transition(0.3s);
+                padding: 35px 37px 30px 66px;
+                clip-path: polygon(3% 0, 100% 0, 97% 100%, 0 100%);
+                p{
+                    margin-bottom: 13px;
+                    font-size: 18px;
+                }
+                @media #{$lg} {
+                    padding: 35px 20px 30px 40px;
+                }
+                @media #{$xxs} {
+                    padding: 30px;
+                }
+            }
+    
+            &:hover{
+                .testimonial{
+                    &__item{
+                        &-content{
+                            background: var(--clr-theme-1);
+                            p{
+                                color: var(--clr-common-white)
+                            }
+                            
+                            h4{
+                                color: var(--clr-common-white)
+                            }
+                            h6{
+                                color: var(--clr-common-white);
+                            }
+                        }
+                    &-img{
+                        img{
+                            transform: rotateY(360deg);
+                        }
+                    }
+                    }
+                }
+            }
+        }
+    }
+}

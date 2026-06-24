@@ -1,0 +1,171 @@
+/*----------------------------------------
+    28. Quote CSS 
+----------------------------------------*/
+@use "../abstract" as *;
+.order__form-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	span {
+		font-family: $oswald;
+		font-size: 16px;
+		font-weight: 500;
+		text-transform: uppercase;
+		color: var(--clr-common-heading);
+	}
+	i {
+		font-size: 20px;
+		color: var(--clr-common-heading);
+		margin-right: 8px;
+	}
+}
+.product__data {
+	label {
+		font-size: 16px;
+		font-weight: 700;
+		margin-bottom: 10px;
+		line-height: 1;
+		color: var(--clr-common-heading);;
+	}
+	input {
+		width: 100%;
+		padding: 0 18px;
+		height: 51px;
+		border: 2px solid var(--clr-common-border-2);
+		margin-bottom: 20px;
+	}
+}
+
+
+.pr-select {
+	width: 100%;
+	height: 51px;
+	margin-bottom: 20px;
+	.current {
+		color: var(--clr-common-placeholder);
+		font-size: 16px !important;
+		opacity: 1;
+		text-transform: uppercase;
+		font-family: $oswald;
+	}
+    .nice-select {
+        height: 51px;
+        line-height: 49px;
+        width: 100%;
+        border: 2px solid var(--clr-common-border-2);
+        border-radius: 0;
+        .list {
+            width: 100%;
+        }
+    }
+}
+
+.product__check {
+	display: flex;
+	column-gap: 40px;
+	flex-wrap: wrap;
+	row-gap: 20px;
+	@media #{$sm, $xs} {
+		column-gap: 30px;
+		row-gap: 8px;
+	}
+}
+.quote-tab {
+	.nav {
+		flex-direction: column;
+		display: flex;
+		gap: 20px;
+		@media #{$lg, $md, $sm, $xs} {
+			flex-direction: row;
+		}
+	}
+	.nav-tabs {
+		border-bottom: 0;
+		.nav-link {
+			margin-bottom: -1px;
+			border: 2px solid var(--clr-common-border-2);
+			border-radius: 0;
+			border-color: var(--clr-common-border-2);
+			&.active {
+				background: var(--clr-common-heading);
+				color: var(--clr-common-white);
+				i {
+					color: var(--clr-common-white);
+				}
+				.order__form-button {
+					span {
+						color: var(--clr-common-white);
+					}
+				}
+			}
+		}
+	}
+	.nav-link {
+		padding: 20px 30px;
+		width: 100%;
+	}
+}
+// Check
+.check-item {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	font-size: 16px;
+	text-transform: capitalize;
+	color: var(--clr-common-color-2);
+	label {
+		span {
+			font-weight: 500;
+			line-height: 1;
+			color: var(--clr-common-heading);
+			text-transform: capitalize;
+		}
+	}
+}
+input {
+	&.e-check-input {
+		margin: 0;
+		appearance: none;
+		-moz-appearance: none;
+		display: block;
+		width: 15px;
+		min-width: 15px;
+		height: 15px;
+		background: var(--clr-common-white);
+		border: 1px solid #b9bac1;
+		outline: none;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+		cursor: pointer;
+		&:checked {
+			position: relative;
+			background-color: var(--clr-theme-1);
+			border-color: transparent;
+			&::after {
+				box-sizing: border-box;
+				content: "\f00c";
+				position: absolute;
+				font-family: $fontawesome;
+				font-size: 10px;
+				color: var(--clr-common-white);
+				top: 50%;
+				left: 50%;
+				-webkit-transform: translate(-50%, -50%);
+				-moz-transform: translate(-50%, -50%);
+				-ms-transform: translate(-50%, -50%);
+				transform: translate(-50%, -50%);
+				font-weight: 500;
+			}
+		}
+	}
+}
+.product__data textarea {
+	width: 100%;
+	padding: 10px 18px;
+	height: 150px;
+	border: 2px solid #eaeaea;
+	margin-bottom: 20px;
+}
+

@@ -1,0 +1,19 @@
+// _fonts.scss
+@font-face {
+  font-family: 'Oswald';
+  src: url('/assets/fonts/Oswald-VariableFont_wght.ttf') format('truetype');
+  font-weight: 200 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/assets/fonts/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+// Font Family Variables
+$oswald: 'Oswald', sans-serif;
+$roboto: 'Roboto', sans-serif;
+$fontawesome: "Font Awesome 5 Pro";

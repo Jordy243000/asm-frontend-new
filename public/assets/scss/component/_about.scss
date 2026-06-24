@@ -1,0 +1,343 @@
+/*----------------------------------------
+    06. About Us CSS
+----------------------------------------*/
+@use "../abstract" as *;
+
+.about{
+    &__area-padding{
+        @media #{$xl} {
+            padding-bottom: 55px;
+        }
+    }
+    &__content {
+        padding-left: 150px;
+        padding-right: 53px;
+        line-height: 1;
+        @media #{$xxl} {
+            padding-left: 120px;
+            padding-right: 20px;
+        }
+        @media #{$xl} {
+            padding-left: 60px;
+            padding-right: 40px;
+        }
+        @media #{$lg, $md, $sm, $xs} {
+            padding-left: 15px;
+            padding-right: 0px;
+        }
+        @media #{$md, $sm, $xs} {
+            padding-left: 0px;
+        }
+        &-tab-2{
+            @media #{$xl, $lg, $md, $sm, $xs} {
+                margin-right: 0;
+            }
+            li{
+                button {
+                    background: var(--clr-common-color-12);
+                    padding: 8px 41px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: var(--clr-common-heading);
+                    text-transform: uppercase;
+                    margin-bottom: 20px;
+                    font-family: $oswald;
+                    clip-path: polygon(21px 0, 100% 0, calc(100% - 21px) 100%, 0 100%);
+                    &.active{
+                        background: var(--clr-theme-1);
+                        color: var(--clr-common-white);
+                    }
+                    @media #{$xl, $lg, $md, $sm, $xs} {
+                        padding: 12px 30px;
+                    }
+                    @media #{$lg, $md, $sm, $xs} {
+                        padding: 12px 25px;
+                    }
+                }
+            }
+        }
+    }
+    &__img{
+        img{
+            clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+        }
+        @media #{$xl, $lg, $md, $sm, $xs} {
+            img{
+                width: 100%;
+            }
+        }
+    }
+    &__time-img {
+        right: -135px;
+        bottom: 60px;
+        @media #{$xl, $lg, $md, $sm, $xs} {
+            width: 200px;
+            right: -85px;
+        }
+        @media #{$lg, $md, $sm, $xs} {
+            display: none;
+        }
+    }
+    &__btn{
+        &-2{
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            text-align: center;
+            @include transform(translateY(-50%));
+        }
+    }
+    &__img-2{
+        clip-path: polygon(3% 0, 100% 0, 97% 100%, 0% 100%);
+        img{
+            clip-path: polygon(3% 0, 100% 0, 97% 100%, 0% 100%);
+        }
+        @media #{$md, $sm, $xs} {
+            margin-left: 0;
+        }
+    }
+    &__content{
+        &-2{
+            padding-right: 10px;
+            .section__title{
+                    h2{ letter-spacing: -1px;
+                        // @media #{$xl, $lg, $md, $sm, $xs} {
+                        //     font-size: 40px;
+                        //     br {
+                        //         display: none;
+                        //     }
+                        // }
+                        // @media #{$lg, $md, $sm, $xs} {
+                        //     font-size: 30px;
+                        //     br {
+                        //         display: none;
+                        //     }
+                        // }
+                }
+            }
+        }
+    }
+    
+}
+
+// About 2 Style 
+.about__area-2 {
+	@media #{$lg} {
+        padding-bottom: 50px;
+    }
+}
+.about__img-2{
+    @media #{$lg, $md, $sm, $xs} {
+        margin-left: 0px;
+    }
+}
+
+
+// About 3 Style Start Here 
+.about__3{
+    &.about__gray-bg::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 500px;
+        height: 500px;
+        background: var(--clr-bg-gray-4);
+        content: '';
+        @media #{$sm, $xs} {
+            display: none;
+        }
+    }
+    &-img-wrapper{
+        padding-bottom: 50px;
+        padding-top: 100px;
+        @media #{$lg, $md, $sm} {
+            padding-bottom: 40px;
+        }
+        @media #{$xs} {
+            padding-bottom: 40px;
+            padding-top: 60px;
+        }
+        
+    }
+    &-top{
+        width: 200px;
+        height: auto;
+        position: absolute;
+        top: 0;
+        left: -77px;
+        z-index: 1;
+        background: var(--clr-common-white);
+        padding: 10px;
+        clip-path: polygon(9% 0, 100% 0, 92% 100%, 0% 100%);
+        @media #{$xl, $lg, $md, $sm, $xs} {
+            left: -35px;
+        }
+        @media #{$xs} {
+            width: 120px;
+            left: -16px;
+            padding: 5px;
+        }
+        @media #{$xxs} {
+            width: 100px;
+            left: -8px;
+            padding: 5px;
+        }
+    }
+    &-text {
+        background: var(--clr-common-color-red);
+        padding: 29px 53px;
+        display: flex;
+        align-items: center;
+        position: absolute;
+        right: -38px;
+        bottom: 0;
+        clip-path: polygon(7% 0, 100% 0, 93% 100%, 0 100%);
+        @include transition(0.3s);
+        i {
+            color: var(--clr-common-white);
+            font-size: 40px;
+            margin-right: 20px;
+            @media #{$xs} {
+                font-size: 35px;
+                margin-right: 15px;
+            }
+        }
+        @media #{$lg, $md, $sm, $xs} {
+            padding: 19px 40px;
+        }
+        @media #{$xl, $lg, $md, $sm, $xs} {
+            left: 0;
+            right: auto;
+        }
+        @media #{$xxs} {
+            padding: 20px 25px;
+        }
+    }
+    &-title {
+        color: var(--clr-common-white);
+        display: inline-block;
+        margin-bottom: 0;
+        font-size: 24px;
+        @media #{$sm, $xs} {
+                font-size: 20px;
+        }
+        @media #{$xs} {
+            font-size: 18px;
+    }
+    }
+    &-content {
+        margin-left: 87px;
+        @media #{$xxl, $xl, $lg} {
+            margin-left: 30px;
+        }
+        @media #{$md, $sm, $xs} {
+            margin-left: 0px;
+        }
+        &-left {
+            padding-right: 200px;
+            @media #{$lg, $md, $xs} {
+                padding-right: 160px;
+            }
+            @media #{$xxs} {
+                padding-right: 0px;
+            }
+        }
+        &-inner {
+            display: flex;
+            margin-top: -2px;
+        }
+        &-right {
+            position: absolute;
+            top: 0;
+            right: -5px;
+            @media #{$md, $sm, $xs} {
+                .about__3-shadow{
+                    &:last-child{
+                        display: none;
+                    }
+                }
+            }
+            
+            @media #{$xxs} {
+                display: none; 
+            }
+        }
+        &-num{
+            background: var(--clr-common-white);
+            margin-bottom: 15px;
+            text-align: center;
+            margin-bottom: 15px;
+            padding: 25px 43px;
+            @include transition(0.3s);
+            clip-path: polygon(14% 0, 100% 0, 86% 100%, 0% 100%);
+            @media #{$xxs} {
+                padding: 20px 25px;
+            }
+            h2 {
+                font-size: 60px;
+                color: var(--clr-common-color-red);
+                margin-top: 0px;
+                line-height: 1;
+                @media #{$xxs} {
+                    font-size: 30px;
+                }
+            }
+            h6 {
+                font-size: 14px;
+                display: block;
+                color: var(--clr-common-color-3);
+                margin-bottom: 0;
+            }
+            &:hover{
+                background: var(--clr-theme-1);
+                h2 {
+                    color: var(--clr-common-white);
+                }
+                h6 {
+                    color: var(--clr-common-white);
+                }
+            }
+        }
+        &-btn{
+            .skew-btn{
+                color: var(--clr-common-heading);
+                &:hover{
+                    color: var(--clr-common-white);
+                    &::before{
+                        background: var(--clr-theme-1);
+                        border-color: var(--clr-theme-1);
+                    }
+                }
+                
+            }
+        }
+    }
+    &-shadow{
+        filter: drop-shadow(2px 2px 10px rgba(0, 0, 0, 0.06));
+    }
+    &-main{
+        clip-path: polygon(4% 0, 100% 0, 97% 100%, 0 100%);
+        img {
+            clip-path: polygon(4% 0, 100% 0, 97% 100%, 0 100%);
+        }
+    }
+}
+// About 3 Style End Here
+
+.about__detail-area {
+    margin-top: -20px;
+
+    .about__detail-content {
+        p {
+            color: var(--clr-text-body);
+            font-size: 17px;
+            line-height: 1.9;
+            margin-bottom: 24px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

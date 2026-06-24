@@ -1,0 +1,80 @@
+/*----------------------------------------
+    14. Accordion CSS
+----------------------------------------*/
+@use "../abstract" as *;
+
+.acc-testi {
+	@media #{$md, $sm, $xs} {
+        padding-bottom: 35px;
+    }
+}
+
+.accordion__wrapper-1{
+    @media #{$xl, $lg, $md} {
+        margin-right: 20px;
+    }
+    @media #{$sm, $xs} {
+        margin-right: 0px;
+    }
+    .accordion{
+        &-header {
+            filter: drop-shadow(0px 0px 15px rgba(0, 0, 0, 0.1));
+        }
+        &-body{ 
+            padding: 25px 25px 7px 25px;
+            p{
+                margin-bottom: 0;
+            }
+        }
+        &-item{
+            margin-bottom: 20px;
+            border: 0;
+            background: none;
+        }
+        &-button{
+            background: var(--clr-common-white);
+            border: none;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--clr-common-heading);
+            clip-path: polygon(2% 0, 100% 0, 98% 100%, 0 100%);
+            // @include box-shadow(0px 16px 32px 0px rgba(0, 0, 0, 0.04));
+            box-shadow: none;
+            padding: 19px 29px;
+            @include border-radius(0px !important);
+            text-transform: uppercase;
+            @media #{$xxs} {
+                font-size: 16px;
+            }
+            &:focus {
+                box-shadow: none;
+            }
+            &:not(.collapsed) {
+                color:var(--clr-common-white);
+                background-color: var(--clr-common-color-red);
+            }
+            &.collapsed::after {
+                font-family: "Font Awesome 5 Pro";
+                content: "\f067";
+                background-image: none;
+                font-weight: 400;
+            }
+            &::after {
+                font-family: "Font Awesome 5 Pro";
+                content: "\f068";
+                background-image: none;
+            }
+            &:not(.collapsed)::after {
+                background-image: none;
+                @include transform(none);
+                font-weight: 400;
+            }
+            @media #{$xxs} {
+                padding: 16px 16px;
+            }
+        }
+        &-collapse {
+            border: none;
+        }
+    }
+}

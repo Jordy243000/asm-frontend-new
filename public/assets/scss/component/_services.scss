@@ -1,0 +1,476 @@
+/*----------------------------------------
+    05. Services CSS
+----------------------------------------*/
+@use "../abstract" as *;
+
+
+// Services Style Here
+.services-one{
+    .services{
+        
+        &__box{
+            background: transparent;
+            z-index: 200;
+            position: relative;
+            padding-top: 25px;
+            padding-left: 40px;
+            padding-right: 40px;
+            @media #{$lg} {
+                padding-left: 20px;
+                padding-right: 20px;        
+            }
+            @media #{$md} {
+                padding-top: 60px;
+                padding-bottom: 13px;
+            }
+            @media #{$sm, $xs} {
+                padding-top: 55px;
+                padding-bottom: 13px;
+            }
+            &--space {
+                margin-top: -140px;
+                position: relative;
+                z-index: 100;
+                @media #{$sm, $xs} {
+                    margin-top: 0px;
+
+                }
+            }
+                
+            &::after{
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 98.5%;
+                display: block;
+                height: 10px;
+                background: var(--clr-common-color-red);
+                @include transform(skew(-10deg));
+            }
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                background: var(--clr-common-white);
+                width: 102%;
+                height: 100%;
+                z-index: -1;
+                clip-path: polygon(2% 0, 100% 0, 98% 100%, 0% 100%);
+            }
+        }
+        &__item{
+            @include transition(0.3s);
+            padding: 0 15px;
+            &-content{
+                @include transform(translateY(-10px));
+                @include transition(0.3s);
+                @media #{$md, $sm, $xs} {
+                    @include transform(translateY(0px));
+                    margin-bottom: 50px;
+                }
+            }
+            @media #{$lg} {
+                padding: 0 10px;
+            }
+            @media #{$md} {
+                padding: 0 20px;
+            }
+            @media #{$sm, $xs} {
+                padding: 0 10px;
+            }
+            @media #{$md, $sm, $xs} {
+                margin-bottom: 30px;
+                
+            }
+            &-btn {
+                text-align: center;
+                margin-top: 25px;
+                opacity: 0;
+                visibility: hidden;
+                @include transition(0.3s);
+                @media #{$md, $sm, $xs} {
+                    opacity: 1;
+                    visibility: visible;
+                }
+                @media #{$md, $sm, $xs} {
+                    margin-top: 18px;
+                }
+                a {
+                    font-size: 14px;
+                    text-transform: uppercase;
+                    color: var(--clr-common-heading);
+                    font-weight: 600;
+                    font-family: $oswald;
+                    &:hover{
+                        color: var(--clr-common-color-red);
+                    }
+                }
+            }
+            &-icon {
+                width: 133px;
+                height: 133px;
+                background: var(--clr-common-white);
+                border: 4px solid transparent;
+                @include border-radius(50%);
+                margin: auto;
+                @include transition(0.3s);
+                font-size: 70px;
+                color: var(--clr-common-color-red);
+                padding-top: 30px;
+                font-size: 60px;
+                @media #{$md, $sm, $xs} {
+                    border: 0;
+                    width: unset;
+                    height: unset;
+                    margin-bottom: 30px;
+                    padding-top: 0px;
+                }
+                
+            }
+            &:hover{
+               @include transform(translateY(-95px));
+               .services{
+                &__item{
+                    &-icon{
+                        border: 4px solid var(--clr-common-color-red);
+                    }
+                    &-content {
+                        @include transform(translateY(30px));
+                    }
+                    &-btn {
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+               }
+               @media #{$md, $sm, $xs} {
+                @include transform(translateY(0px));
+                .services{
+                 &__item{
+                     &-icon{
+                         border: 0;
+                     }
+                     &-content {
+                         @include transform(translateY(0px));
+                     }
+                     &-btn {
+                         opacity: 1;
+                         visibility: visible;
+                     }
+                 }
+                }
+               }
+            }
+        }
+        &__item-content{
+            h3 {
+                margin-bottom: 20px;
+                @media #{$xl} {
+                    font-size: 26px;
+                }
+                @media #{$lg, $md, $sm, $xs} {
+                    font-size: 22px;
+                }
+                &:hover{
+                    color: var(--clr-common-color-red);
+                }
+            }
+            p {
+                margin-bottom: 0px;
+                font-size: 14px;
+                line-height: 24px;
+            }
+            &-2{
+                h3{
+                    margin-bottom: 20px;
+
+                }
+            }
+        }
+    }
+}
+
+.services__item-content {
+	@media #{$sm} {
+        padding: 0 62px;
+    }
+    @media #{$xs} {
+        padding: 0 10px;
+    }
+}
+
+// Service Tow CSS
+.services-two-active {
+	margin-right: -600px !important;
+}
+.services__section{
+    .section__title {
+        @media #{$sm, $xs} {
+            margin-bottom: 60px;
+        }
+    }
+}
+
+.services-two{
+    margin-left: 20px;
+    @media #{$md, $sm, $xs} {
+        margin-left: 0px;
+    }
+    .services{
+        &__item{
+            padding: 55px 50px;
+            @include transition(0.3s);
+            clip-path:polygon(6% 0, 100% 0, 94% 100%, 0 100%);
+            position: relative;
+            background:var(--clr-common-white);
+            z-index: 2;
+            h3{
+                margin-bottom: 23px;
+                @media #{$xl, $lg, $md, $sm, $xs} {
+                    font-size: 25px;
+                }
+                @media #{$xxs}{
+                    font-size: 22px;
+                }
+                &:hover{
+                    color: var(--clr-common-color-red) !important;
+                }
+            }
+            p{
+                font-size: 14px;
+                margin-bottom: 0;
+                line-height: 24px;
+            }
+            &-icon {
+                font-size: 72px;
+                color: var(--clr-common-color-red);
+            }
+            @media #{$xl, $lg, $md, $sm, $xs} {
+                padding: 40px 30px 40px 30px;
+            }
+            &:hover{
+                background: var(--clr-theme-1);
+                h3{
+                    color: var(--clr-common-white);
+                }
+                p{
+                    color: var(--clr-common-color-10);
+                }
+                &-shape{
+                    opacity: 1;
+                    visibility: visible;
+                }
+                .services{
+                    &__item{
+                        &-shape{
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+                }
+            }
+
+            &-shape {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 190px;
+                height: 190px;
+                background: var(--clr-common-color-13);
+                bottom: 0;
+                right: 0;
+                margin: auto;
+                @include border-radius(50%);
+                z-index: -1;
+                opacity: 0;
+                visibility: hidden;
+                @include transition(0.3s);
+            }
+        }
+    }
+    &-nav {
+        display: flex;
+        align-items: center;
+        @media #{$sm, $xs} {
+            margin-bottom: 50px;
+        }
+        div{
+            width: 80px;
+            height: 60px;
+            text-align: center;
+            background: var(--clr-common-white);
+            @include transition(0.3s);
+            color: var(--clr-common-heading);
+            cursor: pointer;
+            clip-path: polygon(25% 0, 100% 0, 75% 100%, 0 100%);
+            padding-top: 18px;
+            &:hover {
+                background: var(--clr-common-color-red);
+                i{
+                    color: var(--clr-common-white);
+                }
+            }
+            @media #{$xs} {
+                width: 60px;
+                height: 50px;
+                padding-top: 12px;
+              }
+             }
+        }
+    }
+    .swiper-container {
+        margin-right: 4px;
+}
+
+
+
+// Services 3 Style Start Here 
+.services__3{
+    &-item{
+        background: var(--clr-common-white);
+        position: relative;
+        padding: 50px 50px 46px 50px;
+        clip-path: polygon(7% 0, 100% 0, 93% 100%, 0 100%);
+        @media #{$xxs} {
+            padding: 50px 30px 46px 30px;
+        }
+        &-num {
+            padding: 28px 32px;
+            background:var(--clr-common-color-15);
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            clip-path: polygon(7% 0, 100% 0, 93% 100%, 0 100%);
+            @include transition(0.3s);
+            @media #{$xxs} {
+                padding: 20px;
+            }
+            h3 {
+                color: var(--clr-common-color-red);
+                line-height: 1;
+                margin-bottom: 0;
+            }
+        }
+        &-icon {
+            margin-bottom: 35px;
+            font-size: 70px;
+            color: var(--clr-common-color-red);
+            i{
+                display: inline-block;
+            }
+            @media #{$xxs} {
+                font-size: 60px;
+            }
+        }
+        &-title {
+            position: relative;
+            margin-bottom: 16px;
+            display: inline-block;
+            font-family: $oswald;
+            color: var(--clr-common-heading);
+            margin-top: 0px;
+            font-weight: 600;
+            @media #{$xl, $lg, $md, $sm, $xs} {
+                font-size: 24px;
+                
+            }
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 0%;
+                height: 2px;
+                background: var(--clr-common-heading);
+            }
+        }
+        &-text {
+            margin-bottom: 0;
+        }
+        &:hover{
+            .services__3{
+                &-item{
+                    &-num {
+                        background:var(--clr-common-color-red);
+                        h3 {
+                            color: var(--clr-common-white);
+                        }
+                    }
+                    &-icon{
+                        i{
+                            @include transform(translateY(-10px));
+                        }
+                    }
+                    &-title {
+                        &::before {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+// Services 3 Style End Here 
+
+
+// service details CSS Start Here
+.services-overview-space{
+    @media #{$xs} {
+        margin-bottom: 20px;
+    }
+}
+.services__details-img img, .service__details-content img {
+	clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
+}
+
+// Sidebar service widget
+
+.sidebar__widget ul.widget-services{
+    
+    li {
+        list-style: none;
+        margin-bottom: 15px;
+        position: relative;
+        z-index: 2;
+        background: transparent;
+        &:last-child{
+            margin-bottom: 0px;
+        }
+        a {
+            padding: 17px 30px;
+            font-weight: 500;
+            display: block;
+            clip-path: polygon(3% 0, 100% 0, 97% 100%, 0 100%);
+            color: var(--clr-common-heading);
+            background: var(--clr-common-white);
+            text-transform: uppercase;
+            @media #{$lg,$xxs}{
+                padding: 17px 20px;
+            }
+            i {
+             margin-right: 15px;
+            }
+        }
+        &:hover{
+            a {
+            color: var(--clr-common-white);
+            background: var(--clr-theme-1);
+            }
+        }
+    }
+    
+}
+
+
+.sidebar__widget {
+    color: var(--clr-common-heading);
+}
+
+.section__title .title-sm {
+    color: var(--clr-common-heading);
+}

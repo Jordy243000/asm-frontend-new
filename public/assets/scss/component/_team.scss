@@ -1,0 +1,346 @@
+/*----------------------------------------
+    13. Team CSS
+----------------------------------------*/
+@use "../abstract" as *;
+
+.team{
+    &__item{
+        overflow: hidden;
+        &-text{
+            opacity: 0;
+            visibility: hidden;
+            bottom: 0;
+            z-index: 1;
+            left: 50px;
+            bottom: -100px;
+            margin-top: 100px;
+            @include transition(0.3s);
+            @media #{$sm, $xs} {
+                left: 20px;
+            }
+            span{
+                font-size: 14px;
+                text-transform: uppercase;
+                margin-bottom: 8px;
+                display: block;
+                color: var(--clr-common-white);
+                opacity: 0.5;
+            }
+            h3{
+                font-size: 24px;
+                color: var(--clr-common-white);
+                margin-bottom: 30px;
+                &:hover{
+                    color: var(--clr-common-color-red);
+                }
+            }
+        }
+        &-auth{
+            @media #{$xxs} {
+                h4 {
+                    font-size: 18px;
+                }
+            }
+        }
+        &-img{
+            img{
+                @include transition(1s);
+            }
+        }
+    }
+    &__overlay{
+        z-index: 1;
+        @include transition(0.3s);
+        &::before{
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: var(--clr-theme-1);
+            z-index: 1;
+            opacity: 0;
+            mix-blend-mode: multiply;
+        }
+        &:hover{
+            .team{
+                &__item{
+                    &-text{
+                        opacity: 1;
+                        visibility: visible;
+                        bottom: 40px;
+                        @media #{$sm, $xs} {
+                            bottom: 20px;
+                        }
+                    }
+                    &-img{
+                        img{
+                            @include transform(scale(1.1))
+                        }
+                    }
+                    
+                }
+            }
+            &::before{
+                opacity: 0.9;
+                height: 100%;
+            }
+        }
+    }
+    &__social{
+        a{
+            color: var(--clr-common-color-11);
+            margin-right: 10px;
+            text-transform: uppercase;
+            font-family: $oswald;
+            &:hover{
+                color: var(--clr-common-white);
+            }
+        }
+    }
+}
+
+// Team 3 Style Start Here
+.team__3{
+
+    &-item{
+        margin-left: 35px;
+        margin-right: 35px;
+        @media #{$xl, $lg, $md, $sm, $xs} {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+        &-img{
+            position: relative;
+            img {
+                clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
+
+            }
+        }
+
+        &-content {
+            background: var(--clr-theme-1);
+            padding: 19px 30px;
+            clip-path: polygon(1.2% 0, 100% 0, 98.8% 100%, 0 100%);
+            margin-left: -5px;
+            margin-right: 16px;
+            margin-top: -2px;
+        }
+        &-title {
+            font-size: 24px;
+            color: var(--clr-common-white);
+            @media #{$lg, $md, $sm, $xs} {
+                font-size: 20px;
+            }
+          }
+        &-subtitle {
+            font-size: 14px;
+            color: var(--clr-common-white);
+            text-transform: uppercase;
+            font-family: $oswald;
+            font-weight: 400;
+
+        }
+        &-social {
+            position: absolute;
+            
+            width: 106%;
+            padding: 87px 50px;
+            bottom: -30px;
+            left: -35px;
+            visibility: hidden;
+            opacity: 0;
+            @include transition(0.3s);
+            &:before {
+                position: absolute;
+                content: "";
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                clip-path: polygon(0px 0px, 100% 30%, 96% 80%, 0 60%);
+                background: var(--clr-common-color-red);
+                @include transition(0.3s);
+            }
+            ul{
+                margin-top: -50px;
+                position: relative;
+                li {
+                    display: inline-block;
+                    margin-right: 10px;
+                    a {
+                        display: block;
+                        color: var(--clr-common-white);
+                        font-size: 14px;
+                    }
+                    &:hover{
+                        a{
+                            color: var(--clr-common-heading);
+                        }
+                    }
+                }
+            }
+            @media #{$lg, $md, $sm, $xs} {
+                padding: 65px 50px;
+                left: -29px;
+                ul {
+                    margin-top: -38px;
+                }
+            }
+            @media #{$md, $sm, $xs} {
+                padding: 65px 50px;
+                left: 0px;
+                width: 95%;
+                ul {
+                    margin-top: -38px;
+                }
+            }
+        }
+        &:hover{
+            .team__3{
+                &-item{
+                    &-social {
+                        bottom: 0px;
+                        visibility: visible;
+                        opacity: 1;
+                        @media #{$lg, $md, $sm, $xs} {
+                            bottom: 25px;
+                        }
+                    } 
+                }
+            } 
+        }
+    }
+}
+// Team 3 Style End Here
+
+
+// Team details CSS Start Here 
+.team-img img {
+	clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+}
+
+.tmd{
+    &__content{
+        padding: 0px 30px 0 50px;
+        @media #{$md, $sm, $xs} {
+            padding: 0px;
+        }
+        ul{
+            li{
+                margin-bottom: 8px;
+                list-style: none;
+                span {
+                    color: var(--clr-common-black);
+                }
+            }
+        }
+
+    }
+    &__qualification{
+        .progress {
+            height: 10px;
+        }
+        @media #{$md, $sm, $xs} {
+            padding-left: 0 !important;
+        }
+    }
+    &__skill{
+        &-wrapper {
+            margin-bottom: 30px;
+        }
+        .progress-bar {
+            background-color: var(--clr-theme-1);
+        }
+    }
+    &__education {
+        ul {
+            li {
+                margin-bottom: 25px;
+                list-style: none;
+            }
+        }
+    }
+    img {
+        clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+    }
+}
+
+.skill-title {
+	display: flex;
+	justify-content: space-between;
+    span {
+        float: right;
+        color: var(--clr-common-black);
+    }
+}
+
+.edu{
+    &-icon {
+        float: left;
+        margin-right: 20px;
+        i {
+            font-size: 30px;
+            color: var(--clr-common-heading);
+        }
+    }
+    &-text {
+        overflow: hidden;
+        h5 {
+            margin-bottom: 2px;
+            color: var(--clr-common-heading);
+        }
+        p {
+            margin-bottom: 0;
+        }
+    }
+    &__education{
+        li {
+            margin-bottom: 15px;
+        }
+    }
+}
+
+.skill-category {
+    color: var(--clr-common-heading);
+}
+
+// Tam Details css 
+.team__founder-item {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.team__founder-item-icon {
+    width: 50px;
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 50px;
+    overflow: hidden;
+    position: relative;
+    color: #fff;
+    background-color: rgba(213, 27, 40, 0.1);
+}
+.team__founder-item-icon i {
+    font-size: 16px;
+    color: var(--clr-common-color-red);
+}
+.team__founder-text .contact {
+    color: var(--clr-common-heading);
+}
+.team__founder-text .contact:hover {
+    color: var(--clr-common-color-red);
+}
+.team__founder-item:not(:last-child) {
+    margin-bottom: 15px;
+}
+.td-section-title .title {
+    margin-bottom: 15px;
+}
+.td-section-title p {
+    margin-bottom: 32px;
+}

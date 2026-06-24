@@ -1,0 +1,120 @@
+/*----------------------------------------
+    20. FunFact CSS
+----------------------------------------*/
+@use "../abstract" as *;
+
+.dp-funfact-wrapper {
+    display: flex;
+    align-items: center;
+    @media #{$xs, $sm, $md, $lg}{
+        justify-content: flex-start;
+    }
+    .dp-funfact-icon {
+        margin-right: 20px;
+        .icon {
+            font-size: 60px;
+            color: var(--clr-common-color-red);
+            @media #{$xxs, $xs}{
+                font-size: 50px;
+            }
+        }
+    }
+    .dp-funfact-content {
+        h3 {
+            font-size: 50px;
+            color: var(--clr-common-heading);
+            font-weight: 600;
+            @media #{$xs, $sm, $md, $lg}{
+                font-size: 34px;
+            }
+        }
+        p {
+            margin-bottom: 0;
+        }
+    }
+}
+.dp-funfactor-grid {
+    display: flex;
+    justify-content: space-between;
+    @media #{$sm, $md, $lg}{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+    }
+    @media #{$xs}{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        justify-items: center;
+    }
+    @media #{$xxs}{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        justify-items: center;
+    }
+}
+
+.dp-funfact-content {
+    min-width: 140px;
+}
+
+
+// Funfact style 02 
+.dp-funfact-wrapper-02 {
+    padding: 30px;
+    position: relative;
+    justify-content: center;
+    @media #{$xxs, $xs, $sm}{
+        justify-content: center;
+    }
+}
+
+.dp-funfact-wrapper-02::before {
+    position: absolute;
+    content: "";
+    height: 100%;
+    border: 2px solid var(--clr-common-border-2);
+    transform: skew(-12deg);
+    z-index: -1;
+    left: 10px;
+    width: 100%;
+    @media #{$xxs, $xs, $sm}{
+       width: calc(100% - 30px);
+       transform: skew(-10deg);
+    }
+}
+
+// Funfact Style 03 
+.dp-funfact-area.dp-funfact-area-03{
+    background-repeat: no-repeat;
+    background: fixed;
+    background-size: cover;
+}
+.dp-funfact-wrapper-03 {
+    display: block;
+    background-color: transparent;
+    text-align: center;
+    clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
+    .dp-funfact-icon {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}
+.dp-funfact-area.dp-funfact-area-03::before {
+    position: absolute;
+    content: "";
+    background: var(--clr-common-heading);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.8;
+}
+.dp-funfact-wrapper-03 .dp-funfact-content h3 {
+    color: #fff;
+}
+.dp-funfact-wrapper-03 .dp-funfact-icon i {
+    color: #fff;
+}
+.dp-funfact-wrapper-03 .dp-funfact-content p {
+    color: #fff;
+}

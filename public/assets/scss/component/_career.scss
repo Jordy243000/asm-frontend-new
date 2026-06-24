@@ -1,0 +1,191 @@
+
+/*----------------------------------------
+    25. career CSS 
+----------------------------------------*/
+@use "../abstract" as *;
+
+.career-area {
+	display: block;
+}
+.career-bg {
+	background-color: transparent;
+	background-image: linear-gradient(180deg, #F7F7F7 0%, #F7F7F7 100%);
+}
+.career-single-item {
+	background: var(--clr-common-white);
+	padding: 50px 50px 46px 50px;
+	clip-path: polygon(7% 0, 100% 0, 93% 100%, 0 100%);
+}
+.career-single-item {
+	span {
+		& > a {
+			background-color: var(--clr-common-color-red);
+			color: #fbfdff;
+			font-size: 15px;
+			font-weight: 700;
+			padding: 6px 11px;
+			line-height: 1;
+			margin-bottom: 15px;
+			display: inline-block;
+            
+		}
+	}
+}
+.career-content {
+	h3 {
+		a {
+			font-size: 24px;
+			margin-bottom: 15px;
+			display: inline-block;
+			color: var(--clr-common-heading);
+            @media #{$xs}{
+                font-size: 20px;
+            }
+            &:hover {
+                color: var(--clr-common-color-red);
+            }
+		}
+	}
+    p {
+        margin-bottom: 30px;
+    }
+}
+
+// career-cta-area css
+.career-cta-area {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+.career-cta-wrapper {
+	max-width: 470px;
+	background: var(--clr-common-color-red);
+	padding: 70px 60px 75px;
+	margin-right: 20px;
+	margin-left: 80px;
+    @media #{$xs,$sm,$md,$lg}{
+        margin-right: 0;
+        margin-left: 0;
+    }
+    @media #{$xs}{
+        padding: 50px 30px 55px;
+    }
+}
+.career-cta-content {
+	h3 {
+		font-size: 30px;
+		color: var(--clr-common-white);
+		margin-bottom: 25px;
+        @media #{$xs}{
+            font-size: 26px;
+        }
+	}
+	p {
+		margin-bottom: 25px;
+        color: var(--clr-common-white);
+	}
+}
+// job css
+.job-wrapper {
+	border: 1px solid #ebebeb;
+	padding: 45px 50px;
+	background: #fff;
+	position: relative;
+    border-radius: 6px;
+    @media #{$xs,$sm,$lg}{
+        padding: 45px 30px;
+    }
+}
+.job-instructor-profile {
+	display: flex;
+	gap: 20px;
+    @media #{$xxs} {
+       flex-wrap: wrap;
+        flex-direction: column; 
+    }
+}
+div.job-tag {
+    span {
+        background: #f5f7fc;
+        margin-right: 10px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        display: inline-block;
+        font-size: 13px;
+        text-transform: capitalize;
+        font-weight: 600;
+        color: var(--clr-common-heading);
+        line-height: 1;
+        min-height: 25px;
+    }
+}
+.job-meta {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    span {
+		i {
+			color: var(--clr-common-color-red);
+		}
+	}
+    a:hover{
+        span{
+            color: var(--clr-common-color-red);
+        }
+    }
+}
+.job-instructor-title {
+    span {
+        color: #667488;
+        font-size: 14px;
+    }
+}
+.job-btn {
+	height: 50px;
+	display: inline-flex;
+    background-color: var(--clr-common-heading);
+	padding: 0 30px;
+	justify-content: center;
+	align-items: center;
+	font-size: 16px;
+	font-weight: 500;
+	color: var(--clr-common-white);
+	text-transform: capitalize;
+    border-radius: 6px;
+    &:hover {
+        background: var(--clr-common-color-red);
+        color: var(--clr-common-white);
+    }
+}
+.job-instructor-title {
+    h3 {
+        a {
+            display: inline-block;
+            font-size: 24px;
+            color: var(--clr-common-heading);
+            @media #{$xs}{
+                font-size: 20px;
+            }
+            &:hover {
+                color: var(--clr-common-color-red);
+            }
+        }
+    }
+    span {
+		i {
+			color: var(--clr-common-color-red);
+			margin-right: 5px;
+			font-size: 18px;
+		}
+	}
+}
+.career-cta-content {
+	.job-btn {
+		background: var(--clr-common-white);
+		color: var(--clr-common-heading);
+        &:hover {
+            background: var(--clr-common-heading);
+            color: var(--clr-common-white);
+        }
+	}
+}

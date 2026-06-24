@@ -1,0 +1,68 @@
+
+/*----------------------------------------
+    24. awards Process CSS 
+----------------------------------------*/
+@use "../abstract" as *;
+
+.dp-awards-wrapper {
+    position: relative;
+    &:hover {
+        .dp-award-thumb:before {
+            opacity: 1;
+            transform: perspective(600px) rotateY(0deg);
+        }
+        .dp-awards-content {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+.dp-award-thumb {
+    background: #ddd;
+    padding: 15px;
+    img {
+        width: 100%;
+    }
+    &:before {
+        position: absolute;
+        content: "";
+        height: calc(100% - 30px);
+        background: #012863;
+        opacity: 0;
+        transform: perspective(600px) rotateY(20deg);
+        left: 15px;
+        top: 15px;
+        right: 15px;
+        bottom: 6px;
+    }
+}
+.dp-awards-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    text-align: center;
+    @media #{$xs,$xl}{
+        padding: 25px;
+    }
+    h3 {
+        color: var(--clr-common-white);
+        margin-bottom: 20px;
+        font-size: 24px;
+        @media #{$xs,$xl}{
+            font-size: 20px;
+        }
+        @media #{$xxs} {
+            margin-bottom: 10px;
+        }
+    }
+    p {
+        color: var(--clr-common-white);
+        margin-bottom: 0;
+    }
+}

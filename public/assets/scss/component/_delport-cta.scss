@@ -1,0 +1,215 @@
+/*----------------------------------------
+    07. Delport CTA CSS 
+----------------------------------------*/
+@use "../abstract" as *;
+
+
+.services{
+    &__cta-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 120px 1fr;
+        align-items: center;
+        @media #{$xxs} {
+            display: block;
+            .services__cta-item{
+                text-align: center !important;
+                i{
+                    margin: auto;
+                }
+            }
+        }
+    }
+    &__cta{
+        &-box{
+            z-index: 1;
+            padding-top: 30px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding-bottom: 15px;
+            clip-path: polygon(1.5% 0%, 100% 0%, 98.5% 100%, 0% 100%);
+        }
+        &-overlay::before{
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--clr-common-color-red);
+            opacity: 0.9;
+            z-index: -1;
+        }
+        &-item{
+            h3 {
+                margin-bottom: 0;
+                color: var(--clr-common-white);
+                a {
+                    &:hover{
+                        color: var(--clr-common-heading);
+                    }
+                    @media #{$sm} {
+                        display: block;
+                    }
+                    @media #{$xs} {
+                        display: inline-block;
+                    }
+                }
+                @media #{$md} {
+                    font-size: 25px; 
+                }
+                @media #{$sm, $xs} {
+                    font-size: 20px; 
+                }
+            }
+            i {
+                width: 60px;
+                height: 60px;
+                background: var(--clr-common-white);
+                line-height: 60px;
+                @include border-radius(50%);
+                text-align: center;
+                color: var(--clr-common-color-red);
+                font-size: 35px;
+                display: block;
+                line-height: 73px;
+                margin: 0 30px;
+            }
+
+
+        }
+
+    }
+}
+
+
+
+
+.services__cta-3{
+    &-play {
+        display: inline-block;
+        background: var(--clr-common-color-16);
+        padding: 10px;
+        border: 50%;
+        @include border-radius(50%);
+        margin-bottom: 27px;
+    }
+    &-title {
+        color: var(--clr-common-white);
+        margin-bottom: 43px;
+        @media #{$xl, $lg, $md, $sm, $xs} {
+            font-size: 30px;
+            br{
+                display: none;
+            }
+        }
+    }
+    &-btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px 6px;
+        @media #{$xxs} {
+            flex-direction: column;
+        }
+        .fill-btn{
+            clip-path: polygon(11% 0%, 100% 0, 89% 100%, 0% 100%);
+            padding: 0 53px;
+            background: var(--clr-common-white);
+            color: var(--clr-common-heading);
+            &:hover{
+                background: var(--clr-theme-1);
+                color: var(--clr-common-white)
+            }
+        }
+        .border-btn {
+            @include transform(skew(-17deg));
+        }
+    }
+}
+
+
+
+.help{
+    &__cta{
+        &-btn{
+            .skew-btn::before {
+                border: 2px solid var(--clr-common-border-2);
+            }
+        }
+        &-title{
+            h2{
+                color: var(--clr-common-white);
+                margin-bottom: 0px;
+                @media  #{$xl, $lg, $md, $sm, $xs} {
+                    font-size: 34px;
+                    
+                }
+            }
+        }
+    }
+}
+
+.call{
+    &__cta{
+        &.position {
+            top: -50px;
+            width: 100%;
+            left: 0;
+            right: 0;
+        }
+        &-icon {
+            font-size: 54px;
+            color: var(--clr-common-white);
+            @media #{$sm, $xs} {
+                font-size: 35px;
+            }
+        }
+        &-padd{
+            padding: 23px 49px;
+            @media #{$xxs} {
+                padding: 25px;
+            }
+        }
+        &-wrapper{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            @media #{$md, $sm, $xs} {
+                margin-bottom: 35px;
+            }
+        }
+        &-content{
+            &-small-title{
+                color: var(--clr-common-white);
+                font-size: 12px;
+            }
+            &-title {
+                margin-bottom: 0;
+                line-height: 1;
+                color: var(--clr-common-white);
+                @media #{$sm} {
+                    font-size: 25px;
+                }
+                @media #{$xs} {
+                    font-size: 22px;
+                }
+                a:hover{
+                    color: var(--clr-common-white);
+                    opacity: .8;
+                }
+            }
+        }
+    }
+}
+
+
+.contact__cat-btn{
+    .fill-btn{
+        background: var(--clr-common-white);
+        color: var(--clr-common-heading);
+        &:hover{
+            background: var(--clr-common-heading);
+            color: var(--clr-common-white);
+        }
+    }
+}

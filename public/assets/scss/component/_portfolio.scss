@@ -1,0 +1,449 @@
+/*----------------------------------------
+    16. Portfolio CSS
+----------------------------------------*/
+@use "../abstract" as *;
+
+
+.portfolio-menu {
+	text-align: center;
+    button{
+        font-size: 16px;
+        font-weight: 700;
+        padding: 0 35px;
+        height: 60px;
+        color: var(--clr-common-heading);
+        border: none;
+        background: none;
+        margin: 6px 2px;
+        font-family: $oswald;
+        text-transform: uppercase;
+        position: relative;
+        @media #{$md, $sm, $xs} {
+            font-size: 14px;
+            padding: 0 20px;
+            height: 50px;
+            margin: 5px auto;
+        }
+        &::before {
+            position: absolute;
+            content: "";
+            width: calc(100% - 20px);
+            height: 100%;
+            border: 2px solid var(--clr-common-border-2);
+            transform: skew(-18deg);
+            z-index: -1;
+            left: 0;
+            top: 0;
+            right: 0;
+            margin: auto;
+        }
+
+    }
+}
+
+.portfolio-menu button.active::before {
+    background: var(--clr-common-heading);
+    border-color: var(--clr-common-heading);
+}
+.portfolio-menu button.active{
+    color: var(--clr-common-white);
+}
+
+.portfolio__item{
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio__content {
+	background: var(--clr-common-white);
+	position: absolute;
+	left: -100px;
+	bottom: 0px;
+	padding: 43px 45px 43px;
+	width: calc(100% - 15px);
+	opacity: 0;
+	visibility: hidden;
+    @include transition(0.3s);
+	@include transform(scale(0.7));
+    clip-path: polygon(0% 0, 100% 0, 97% 100%, 0 100%);
+    @media #{$md} {
+        padding: 20px;
+    }
+
+    @media #{$xl} {
+        clip-path: polygon(0% 0, 100% 0, 96% 100%, 0 100%);
+    }
+    @media #{$xxs} { 
+        padding: 20px 13px 20px 19px;  
+    }
+    &-thumb {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: -1;
+        width: 125px;
+    }
+    &-title {
+        position: relative;
+        z-index: 2;
+        h5 {
+            font-size: 16px;
+            color: var(--clr-common-color-red);
+            line-height: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        h2 {
+            font-size: 24px;
+            line-height: 34px;
+            color: var(--clr-common-heading);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 14px;
+            @media #{$xxs} {
+                margin-bottom: 0px;
+            }
+            @media #{$xl, $lg, $md, $sm, $xs} {
+                font-size: 20px;
+            }
+        }
+    }
+    &-data {
+        position: relative;
+        z-index: 2;
+        span{
+            a {
+                font-size: 14px;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: var(--clr-common-heading);
+            }
+            i {
+                color: var(--clr-common-color-red);
+                font-size: 14px;
+                margin-right: 5px;
+            }
+            &:first-child {
+                margin-right: 10px;
+            }
+            &:hover{
+                a{
+                    color: var(--clr-common-color-red);
+                }
+            }
+        }
+    }
+}
+.portfolio__img{
+	clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+    img{
+        clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+        width: 100%;
+    }
+}
+.portfolio__item:hover .portfolio__content {
+	opacity: 1;
+	visibility: visible;
+	left: 0px;
+    @include transform(scale(1));
+}
+
+
+// Portfolio Details CSS 
+
+.portfolio__details-img, .service-details-content{
+    img{
+        clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
+    }
+}
+
+
+.overview-list{
+    ul {
+        li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 5px;
+            list-style: none;
+            &::before {
+                position: absolute;
+                content: "\f00c";
+                font-size: 16px;
+                color: var(--clr-common-heading);
+                font-family: $fontawesome;
+                left: 0;
+                top: 0;
+            }
+        }
+    }
+}
+
+.row.portfolio__sd-box {
+	@media #{$lg}{
+        --bs-gutter-x: 18px;
+    }
+}
+.portfolio__sd-box {
+    &-content{
+        padding: 25px 20px;
+	    position: relative;
+        display: inline-grid;
+        width: 100%;
+        &::before{
+            content: '';
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--clr-common-border-2);
+            transform: skew(-4deg);
+            z-index: -1;
+        }
+        i {
+            margin-bottom: 25px;
+            display: block;
+            color: var(--clr-common-color-red);
+            font-size: 45px;
+        }
+        p {
+            margin-bottom: 0;
+            line-height: 20px;
+        }
+        h6 {
+            font-size: 22px;
+            color: var(--clr-common-heading);
+            @media #{$xl, $lg, $sm, $sm, $xs} {
+                font-size: 18px;
+            }
+        }
+
+    }
+}
+
+
+//   Portfolio Slider CSS 
+.portfolio-slider {
+    img{
+        width: 100%;
+    }
+}
+.portfolio-slider-pagination{
+    text-align: center;
+    .swiper-pagination-bullet {
+        width: 30px;
+        height: 4px;
+        display: inline-block;
+        background: var(--clr-common-color-3);
+        margin: 0 3px;
+        opacity: 1;
+        @include border-radius(0px);
+        &-active{
+            background: var(--clr-theme-1);
+        }
+    }
+
+}
+
+.portfolio-form{
+    h4{
+        margin-bottom: 25px;
+    }
+}
+
+
+
+// home 02 portfolio 
+.dp-portfolio-menu {
+    text-align: end;
+    @media #{$md, $sm, $xs, $xxs} {
+        text-align: start;
+    }
+}
+.dp-portfolio-menu button {
+    margin-left: 20px;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: $oswald;
+    color: var(--clr-common-heading);
+    @media #{$lg} {
+        margin-left: 15px;
+    }
+    @media #{$md, $sm, $xs, $xxs} {
+        margin-left: 0;
+        margin-right: 20px;
+    }
+}
+.dp-portfolio-menu button.active {
+    color: var(--clr-common-color-red-3);
+}
+
+
+// Portfolio 03 CSS 
+.dp-single-gallery-03 {
+    position: relative;
+    z-index: 1;
+    min-height: 550px;
+    overflow: hidden;
+    clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
+}
+.dp-single-gallery-thumb-03 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.dp-gallery-content-03 {
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    z-index: 1;
+    padding-left: 43px;
+    padding-right: 43px;
+    padding-bottom: 30px;
+    transition: all 0.3s ease-out 0s;
+}
+.dp-gallery-title-03 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    transform: translateY(40px);
+    visibility: hidden;
+    opacity: 0;
+    color: var(--clr-common-white);
+}
+
+.dp-gallery-tag-03 {
+    visibility: hidden;
+    opacity: 0;
+    transition-delay: 0s;
+    transform: translateY(40px);
+    transition: all 0.3s ease-out 0s;
+    color: var(--clr-common-white);
+}
+.dp-gallery-tag-03 span{
+    font-size: 14px;
+    line-height: 1;
+    color: var(--clr-common-white);
+    text-transform: uppercase;
+    display: block;
+    font-weight: 400;
+    font-family: $oswald;
+}
+
+.dp-gallery-view-03 {
+    position: absolute;
+    top: 45px;
+    right: 45px;
+    z-index: 1;
+    transform: scale(0);
+    transition: all 0.3s ease-out 0s;
+}
+.dp-gallery-view-03 .dp-gallery-plus-btn {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    line-height: 46px;
+    text-align: center;
+    border: 2px solid var(--clr-common-white);
+    color: var(--clr-common-white);
+    border-radius: 50%;
+    font-size: 16px;
+    transition: all 0.3s ease-out 0s;
+}
+.dp-gallery-view-03 .dp-gallery-plus-btn:hover{
+    background-color: var(--clr-common-white);
+    border-color: var(--clr-common-white);
+    color: var(--clr-common-heading);
+}
+.dp-single-gallery-03::after {
+    position: absolute;
+    content: "";
+    left: 15px;
+    top: 15px;
+    right: 15px;
+    bottom: 15px;
+    background-color: var(--clr-common-heading);
+    opacity: 0;
+    transform: perspective(600px) rotateY(20deg);
+    clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
+}
+
+.dp-single-gallery-03:hover .dp-gallery-view-03 {
+    transform: scale(1);
+    visibility: visible;
+    opacity: 1;
+}
+
+.dp-single-gallery-03:hover::after {
+    visibility: visible;
+    opacity: 0.95;
+    transform: perspective(600px) rotateY(0deg);
+}
+.dp-single-gallery-03:hover .dp-gallery-title-03 {
+    transition-delay: 0.2s;
+    transform: translateY(0);
+    visibility: visible;
+    opacity: 1;
+}
+
+.dp-single-gallery-03:hover .dp-gallery-tag-03 {
+    bottom: 15px;
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0.3s;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    visibility: visible;
+    opacity: 1;
+}
+
+// gallery nav CSS 
+.dp-gallery-nav-03 button {
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    transform: translateY(-50%);
+    z-index: 1;
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    line-height: 64px;
+    text-align: center;
+    color: #000;
+    background-color: var(--clr-common-white);
+    font-size: 16px;
+    box-shadow: 0px 30px 50px rgba(3, 4, 28, 0.2);
+    transition: all 0.3s ease-out 0s;
+    clip-path: polygon(20% 0, 100% 0, 80% 100%, 0 100%);
+}
+.dp-gallery-nav-03 button.dp-gallery-button-next-03 {
+    left: auto;
+    right: 15%;
+}
+.dp-gallery-nav-03 button:hover {
+    color: var(--clr-common-white);
+    background-color: var(--clr-common-heading);
+}
+.section__title.gallery-section-title {
+    @media #{$md, $sm, $xs, $xxs}{
+        margin-bottom: 20px;
+    }
+}
+.portfolio__content{
+    p{
+        @media #{$xxs} {
+            margin-bottom: 5px;
+        }
+    }
+}

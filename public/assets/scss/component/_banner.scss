@@ -1,0 +1,359 @@
+/*----------------------------------------
+    05. Banner CSS
+----------------------------------------*/
+@use "../abstract" as *;
+
+.banner-830 {
+	min-height: 760px;
+	@media #{$lg, $md} {
+		min-height: 760px;
+	}
+	@media #{$sm} {
+		min-height: 550px;
+		display: flex;
+		align-items: center;
+	}
+	@media #{$xs} {
+		min-height: 500px;
+		display: flex;
+		align-items: center;
+	}
+
+}
+
+.banner-840 {
+	min-height: 840px;
+	@media #{$lg, $md, $sm, $xs} {
+		min-height: 650px;
+	}
+}
+
+.banner-970{
+	min-height: 970px;
+	@media #{$xl} {
+		min-height: 620px;
+	}
+	@media #{$lg, $md, $sm, $xs} {
+		min-height: 550px;
+	}
+}
+
+
+.banner-overlay{
+	&::before{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient( 90deg, rgb(1,40,99) 0%, rgba(1,40,99,0) 100%);
+		top: 0;
+		left: 0;
+		content: "";
+	}
+	&-3{
+		&::before{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background: #012863;
+			top: 0;
+			left: 0;
+			content: "";
+			opacity: 0.4;
+	}
+ }
+}
+
+
+.banner-overlay-white{
+	z-index: 2;
+	&::before{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(to top, #cacaca3d 0%, rgba(202, 202, 202, 0.8) 100%);
+		top: 0;
+		left: 0;
+		content: "";
+		z-index: 0;
+
+	}
+}
+
+.banner-content{
+	.banner-btn {
+		display: flex;
+		align-content: center;
+		flex-wrap: wrap;
+		gap: 20px 10px;
+		.skew-btn{
+			padding: 0 39px;
+			&:hover{
+				&::before {
+					border-color: var(--clr-common-white);
+				}
+			}
+			&::before {
+				border-color: var(--clr-common-border-8);
+			}
+		}
+	}
+
+}
+
+.banner-content1{
+	padding-top: 180px;
+	@media #{$lg} {
+		padding-top: 170px;
+	}
+	@media #{$sm, $xs} {
+		padding-top: 0px;
+	}
+}
+
+.banner-content2{
+	.banner-title{
+		color: var(--clr-common-heading);
+	}
+}
+
+.banner-content3-round1 {
+	@include border-radius(50%);
+	background: var(--clr-common-color-2);
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 600px;
+	height: 600px;
+	right: 0;
+	margin: auto;
+	bottom: 0;
+	z-index: -1;
+	opacity: 0.902;
+	@media #{$lg, $md, $sm, $xs} {
+		width: 400px;
+		height: 400px;
+		
+	}
+	@media #{$sm, $xs} {
+		width: 300px;
+		height: 300px;
+		
+	}
+}
+
+.banner-content3-round2 {
+	@include border-radius(50%);
+	background: var(--clr-common-color-2);
+	position: absolute;
+	left: -31%;
+	top: -70%;
+	width: 100px;
+	height: 100px;
+	right: 0;
+	margin: auto;
+	bottom: 0;
+	z-index: -1;
+	opacity: 0.902;
+	@media #{$lg, $md, $sm, $xs} {
+		width: 80px;
+		height: 80px;
+	}
+}
+
+.slider__active-3{
+	.slider-nav{
+		& div {
+			position: absolute;
+			top: 0;
+			left: 60px;
+			display: inline-block;
+			z-index: 100;
+			width: 64px;
+			height: 64px;
+			line-height: 64px;
+			text-align: center;
+			bottom: 0;
+			margin: auto;
+			cursor: pointer;
+			position: absolute;
+			@include transform(skew(-14deg));
+			background: transparent;
+			border: 2px solid var(--clr-common-border-10);
+			@include transition(0.3s);
+			i{
+				color: var(--clr-common-white);
+			}
+			&.slider-button-next {
+				left: auto;
+				right: 60px;
+			}
+			&:hover{
+				background: var(--clr-common-color-red);
+				border: 2px solid var(--clr-common-color-red);
+			}
+			@media #{$md, $sm, $xs} {
+				display: none;
+			}
+		}
+	}
+}
+
+.banner-bg {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	z-index: -1;
+	background-color: var(--clr-common-white);
+	transform: scale(1);
+	transition: all 8s linear 0s;
+}
+
+.swiper-slide-active .banner-bg {
+	-webkit-transform: scale(1.12);
+	-moz-transform: scale(1.12);
+	transform: scale(1.12);
+}
+
+.banner-meta-text {
+	margin-bottom: 10px;
+	@media #{$xxs} {
+		margin-bottom: 5px;
+	}
+		span {
+			color: var(--clr-common-white);
+			text-transform: uppercase;
+			font-weight: 400;
+			font-size: 20px;
+			font-family: $oswald;
+			@media #{$xxs} {
+				font-size: 16px;
+			}
+		}
+			
+	}
+	
+
+.banner-title {
+	color: var(--clr-common-white);
+	font-size: 80px;
+	line-height: 1.12;
+	margin-bottom: 42px;
+	@media #{$lg} {
+		font-size: 60px;
+		br{
+			display: none;
+		}
+	}
+	@media #{$md} {
+		font-size: 52px;
+		br{
+			display: none;
+		}
+	}
+	@media #{$sm,$xs} {
+		font-size: 42px;
+		br{
+			display: none;
+		}
+	}
+	@media #{$xxs} {
+		font-size: 32px;
+		br{
+			display: none;
+		}
+	}
+}
+.banner-btn{
+	.clip-btn {
+		clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
+	}
+}
+.banner-btn .border-btn {
+	height: 60px;
+	padding: 0 52px;
+	line-height: 58px;
+}
+.banner-content1 {
+	max-width: 1000px;
+	@media #{$xs} {
+		max-width: 400px;
+	}
+}
+.banner-content2 {
+	@media #{$xs} {
+		max-width: 400px;
+	}
+}
+.banner-content2-3 {
+	max-width: 780px;
+	margin-left: auto;
+	@media #{$xs} {
+		max-width: 450px;
+		margin-left: 0;
+	}
+}
+
+// slider1 pagination style start
+.slider-pagination.slider1-pagination {
+	position: absolute;
+	right: 30px;
+	top: 50%;
+	display: flex;
+	flex-direction: column;
+	left: auto;
+	width: inherit;
+	z-index: 10;
+	@include transform(translateY(-50%));
+	height: 100%;
+	justify-content: center;
+	gap: 20px;
+	@media #{$sm,$xs} {
+		display: none;
+	}
+	.swiper-pagination-bullet {
+		width: 15px;
+		height: 2px;
+		@include border-radius(2px);
+		background: var(--clr-common-heading);
+		opacity: 1;
+		margin-left: auto;
+	}
+	.swiper-pagination-bullet.swiper-pagination-bullet-active {
+		width: 30px;
+	}
+}
+
+// slider 3 CSS 
+.banner-area1 .slider-nav .dp-nav-btn {
+	position: absolute;
+	top: 46%;
+	z-index: 100;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	cursor: pointer;
+	background: transparent;
+	border: 2px solid var(--clr-common-border-10);
+	transition: all 0.3s ease-out 0s;
+	border-radius: 50%;
+	right: 5%;
+	color: #fff;
+	transform: translateY(-50%);
+}
+
+.banner-area1 .slider-nav .dp-nav-btn.slider-button-next {
+	top: 53%;
+	transform: translateY(-45%);
+}
+
+.banner-area1 .slider-nav .dp-nav-btn:hover {
+	border-color: #fff;
+	color: var(--clr-common-color-red);
+	background: #fff;
+}

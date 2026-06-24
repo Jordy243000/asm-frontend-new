@@ -1,0 +1,148 @@
+/*----------------------------------------
+    11. Price CTA CSS 
+----------------------------------------*/
+@use "../abstract" as *;
+
+.price{
+    &__cta-content{
+        padding: 80px 82px 80px 80px;
+        clip-path: polygon(3% 0, 100% 0, 97% 100%, 0 100%);
+        background: var(--clr-common-white);
+        margin-left: 40px;
+        margin-bottom: -1px;
+        @media #{$md} {
+            margin-left: 0px;
+            padding: 70px;
+        }
+        @media #{$sm, $xs} {
+            margin-left: 0px;
+            padding: 60px 40px;
+        }
+        @media #{$xxs} {
+            margin-left: 0px;
+            padding: 40px 25px;
+        }
+        &-shadow{
+            filter: drop-shadow(0px 30px 10px rgba(0, 0, 0, 0.06));
+        }
+    }
+}
+
+
+.price__cta{
+    &-3{
+        margin-top: -190px;
+        padding-top: 310px;
+        padding-bottom: 120px;
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: var(--clr-common-heading);
+            height: 190px;
+            width: 100%;
+            z-index: -1;
+        }
+        &-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            z-index: -1;
+            &::before{
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background: var(--clr-common-heading);
+                opacity: 0.2;
+                height: 190px;
+            }
+            img{
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+    &-content-3 {
+        padding-left: 85px;
+
+        @media #{$xxl, $xl, $lg, $md, $sm} {
+            padding-left: 50px;
+        }
+        @media #{$lg, $md, $sm, $xs, $xxs} {
+            padding-left: 0px;
+        }
+    }
+}
+
+
+.price__range{
+    &-wrapper {
+        padding-top: 30px;
+        margin-bottom: 48px;
+        @media #{$sm, $xs} {
+            padding-top: 5px;
+            margin-bottom: 58px;
+        }
+    }
+    &-text{
+        h5 {
+            margin-bottom: 0px;
+        }
+        @media #{$sm, $xs} {
+            margin-bottom: 30px;
+        }
+    }
+    &-area {
+        margin-left: -40px;
+        @media #{$sm, $xs} {
+            margin-left: 0px;
+        }
+        .ui-slider-handle {
+            width: 80px;
+            height: 60px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            background: var(--clr-common-heading);
+            color: var(--clr-common-white);
+            cursor: pointer;
+            top: 0;
+            margin: auto;
+            text-align: center;
+            line-height: 60px;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+            font-size: 20px;
+            font-weight: 600;
+            @media #{$xs} {
+                    width: 60px;
+                    height: 50px;
+                    line-height: 50px;
+                    font-size: 17px;
+                
+                }
+        }
+        .ui-widget{
+            font-family: $oswald;
+            font-size: 20px;
+            color: var(--clr-common-white);
+            font-weight: 600;
+            &.ui-widget-content {
+                border: none;
+                background: var(--clr-common-color-18);
+                height: 4px;
+                @include border-radius(0px);
+            }
+        }
+    }
+}
+
+
+

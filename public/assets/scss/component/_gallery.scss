@@ -1,0 +1,99 @@
+/*----------------------------------------
+    21. Gallery CSS
+----------------------------------------*/
+@use "../abstract" as *;
+
+.dp-single-gallery{
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
+    img {
+        max-width: 100%;
+        transition: all 1.5s cubic-bezier(0, 0, 0.2, 1);
+    }
+    &:hover img {
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+    .dp-gallery-content {
+        position: absolute;
+        left: 0;
+        bottom: -150px;
+        background: var(--clr-common-white);
+        display: inline-block;
+        padding: 30px 35px 30px 35px;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 500ms ease;
+        right: 0;
+        margin-right: 33px;
+        margin-left: 20px;
+        display: flex;
+        justify-content: space-between;
+        @media #{$xs, $xxs, $sm, $md}{
+            padding: 20px 25px 20px 25px;
+        }
+    }
+    &:hover {
+        .dp-gallery-content {
+            opacity: 1;
+            visibility: visible;
+            bottom: 20px;
+        }
+    }
+}
+
+.dp-gallery-content {
+    clip-path: polygon(2% 0, 100% 0, 98% 100%, 0% 100%);
+    .dp-gallery-title {
+        color: var(--clr-common-heading);
+        margin-bottom: 8px;
+        font-size: 18px;
+        &:hover a{
+            color: var(--clr-common-color-red) !important;
+        }
+    }
+    span {
+        font-size: 14px;
+        line-height: 1;
+        color: var(--clr-common-heading);
+        text-transform: uppercase;
+        display: block;
+        font-weight: 400;
+        font-family: $oswald;
+    }
+}
+.dp-gallery-nav{
+    justify-content: flex-end;
+    @media #{$xs, $xxs, $sm, $md}{
+        justify-content: flex-start;
+        margin-bottom: 60px !important;
+    }
+}
+
+.gallery-section-title{
+    @media #{$xs, $xxs, $sm, $md}{
+        margin-bottom: 40px;
+    }
+}
+
+.dp-gallery-link {
+    margin-left: 15px;
+    a {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        line-height: 40px;
+        border: 1px solid #ddd;
+        display: inline-block;
+        text-align: center;
+        font-size: 16px;
+        color: var(--clr-common-heading);
+        transition: 0.3s;
+        &:hover{
+            background-color: var(--clr-common-heading);
+            border-color: var(--clr-common-heading);
+            color: var(--clr-common-white);
+        }
+    }
+}

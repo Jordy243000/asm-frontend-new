@@ -1,0 +1,98 @@
+/*----------------------------------------
+    17. Approach CSS
+----------------------------------------*/
+@use "../abstract" as *;
+
+.approach{
+    &__area {
+        position: relative;
+    }
+    &__img {
+        width: 50%;
+        float: left;
+        height: 100%;
+        position: absolute;
+        @media #{$md, $sm, $xs} {
+            width: 100%;
+            float: none;
+            position: static;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    &__content {
+        padding-top: 120px;
+        padding-left: 120px;
+        padding-bottom: 90px;
+        @media #{$xl} {
+            padding-left: 50px;
+        }
+        .section__title{
+            @media #{$xl} {
+                margin-bottom: 25px;
+                .title{
+                    font-size: 34px;
+                }
+            }
+            
+        }
+        
+        @media #{$lg} {
+            padding-left: 25px;
+        }
+        .section__title .title {
+            @media #{$lg} {
+                margin-bottom: 17px;
+                font-size: 30px;
+            }
+        }
+        @media #{$md, $sm} {
+            padding-left: 0;
+        }
+        @media #{$md, $sm, $xs} {
+            padding-left: 0;
+        }
+    }
+    &__text{
+        p {
+            padding-right: 35px;
+            margin-bottom: 35px;
+            @media #{$lg, $md, $sm, $xs} {
+                margin-bottom: 15px;
+            }
+        }
+        ul {
+            padding-right: 60px;
+            display: inline-block;
+            @media #{$xl, $lg, $md, $sm, $xs} {
+                padding-right: 0px;
+            }
+            li {
+                width: 50%;
+                float: left;
+                margin-bottom: 16px;
+                @media #{$lg, $md, $sm, $xs} {
+                    margin-bottom: 8px;
+                }
+                @media #{$xxs} {
+                    width: 100%;
+                    float: none;
+                }
+                i {
+                    color: var(--clr-common-heading);
+                    font-size: 16px;
+                    margin-right: 14px;
+                    @include transition(0.3s);
+                }
+                &:hover{
+                    i{
+                        color: var(--clr-common-color-red);
+                    }
+                }
+            }
+        }
+    }
+}
