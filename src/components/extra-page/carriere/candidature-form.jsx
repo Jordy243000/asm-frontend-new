@@ -14,7 +14,13 @@ import {
   CV_MAX_SIZE_MB,
 } from "@/constants/candidature-options";
 
-const MySwal = withReactContent(Swal);
+function fireSwal(options) {
+  if (typeof window === "undefined") {
+    return Promise.resolve();
+  }
+
+  return withReactContent(Swal).fire(options);
+}
 
 const INITIAL_FORM = {
   firstName: "",
@@ -71,7 +77,7 @@ const CandidatureForm = () => {
     if (!file) return;
 
     if (file.size > CV_MAX_SIZE_MB * 1024 * 1024) {
-      MySwal.fire({
+      fireSwal({
         title: "Fichier trop volumineux",
         text: `La taille maximale est de ${CV_MAX_SIZE_MB} Mo.`,
         icon: "warning",
@@ -88,7 +94,7 @@ const CandidatureForm = () => {
     if (!file) return;
 
     if (file.size > CV_MAX_SIZE_MB * 1024 * 1024) {
-      MySwal.fire({
+      fireSwal({
         title: "Fichier trop volumineux",
         text: `La taille maximale est de ${CV_MAX_SIZE_MB} Mo.`,
         icon: "warning",
@@ -122,7 +128,7 @@ const CandidatureForm = () => {
   };
 
   const alertSuccess = () => {
-    MySwal.fire({
+    fireSwal({
       title: "Candidature envoyée",
       text: "Merci ! Votre dossier a bien été transmis à notre équipe RH.",
       icon: "success",
@@ -133,7 +139,7 @@ const CandidatureForm = () => {
   };
 
   const alertFailure = (message) => {
-    MySwal.fire({
+    fireSwal({
       title: "Erreur",
       text:
         message ||

@@ -45,8 +45,23 @@ export function getPartnerLogo(item) {
   };
 }
 
+export function dedupePartnerList(partners = []) {
+  const seen = new Set();
+
+  return partners.filter((item) => {
+    const name = (item?.attributes?.name || "").trim().toLowerCase();
+    if (!name || seen.has(name)) {
+      return false;
+    }
+
+    seen.add(name);
+    return true;
+  });
+}
+
 export function mergePartnerList(partners = []) {
-  const existingNames = partners.map((item) => item?.attributes?.name || "");
+  const uniquePartners = dedupePartnerList(partners);
+  const existingNames = uniquePartners.map((item) => item?.attributes?.name || "");
 
   const missingStatic = STATIC_PARTNER_ENTRIES.filter((entry) => {
     const staticName = entry?.attributes?.name || "";
@@ -59,5 +74,5 @@ export function mergePartnerList(partners = []) {
     return !existingNames.some((name) => override.match.test(name));
   });
 
-  return [...partners, ...missingStatic];
+  return [...uniquePartners, ...missingStatic];
 }

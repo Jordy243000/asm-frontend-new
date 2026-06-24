@@ -22,9 +22,14 @@ function buildMarqueeLogos(partners) {
 
   if (!logos.length) return [];
 
+  const uniqueLogos = logos.filter(
+    (item, index, list) =>
+      list.findIndex((entry) => entry.logo === item.logo) === index
+  );
+
   const repeated = [];
   while (repeated.length < MIN_LOGOS_FOR_LOOP) {
-    repeated.push(...logos);
+    repeated.push(...uniqueLogos);
   }
 
   return [...repeated, ...repeated];
