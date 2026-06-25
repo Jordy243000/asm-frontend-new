@@ -15,6 +15,12 @@ const DEPENDENCY_SCRIPTS = [
 const CargonScripts = () => {
   const [stage, setStage] = React.useState(0);
 
+  React.useEffect(() => {
+    if (typeof window !== "undefined" && window.jQuery?.fn) {
+      setStage(DEPENDENCY_SCRIPTS.length + 1);
+    }
+  }, []);
+
   return (
     <>
       <Script

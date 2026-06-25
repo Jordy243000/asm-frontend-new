@@ -1,6 +1,5 @@
 "use client";
 import { useEffect } from "react";
-import { usePathname } from "next/navigation";
 
 const SLICK_SELECTORS = [
   ".slider-nav",
@@ -16,6 +15,36 @@ const HERO_SLICK_SELECTORS = [".slider-for", ".slider-nav"];
 
 /** Instances Slick encore en mémoire après destruction du DOM React */
 const trackedSlickInstances = new Set();
+
+function deferDomPluginCleanup(callback) {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      try {
+        callback();
+      } catch {
+        // Le DOM peut déjà être démonté par React.
+      }
+    });
+  });
+}
+
+function initAos() {
+  if (!window.AOS) {
+    return;
+  }
+
+  if (window.__cargonAosInitialized) {
+    window.AOS.refresh();
+    return;
+  }
+
+  window.AOS.init({ disable: "mobile", once: true, duration: 800 });
+  window.__cargonAosInitialized = true;
+}
 
 function pauseSlickInstance(instance) {
   if (!instance) {
@@ -231,7 +260,7 @@ function initCargonPlugins(mode = "full") {
   }
 
   if (window.AOS) {
-    window.AOS.init({ disable: "mobile", once: true, duration: 800 });
+    initAos();
   }
 
   if ($(".counter").length && $.fn.counterUp) {
@@ -249,13 +278,6 @@ function initCargonPlugins(mode = "full") {
 
 export function useCargonInit(deps = []) {
   const mode = deps.includes("base") ? "base" : "full";
-  const pathname = usePathname();
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.jQuery) {
-      unslickAll(window.jQuery);
-    }
-  }, [pathname]);
 
   useEffect(() => {
     let attempts = 0;
@@ -310,21 +332,15 @@ export function useCargonInit(deps = []) {
       clearTimeout(timer);
       cancelAnimationFrame(rafId);
       window.removeEventListener("cargon:plugins-ready", onPluginsReady);
-      if (window.jQuery) {
-        clearAllSlickAutoplay(window.jQuery);
-        unslickAll(window.jQuery);
+      if (mode === "full" && window.jQuery) {
+        const $ = window.jQuery;
+        deferDomPluginCleanup(() => {
+          clearAllSlickAutoplay($);
+          unslickAll($);
+        });
       }
     };
   }, deps);
-
-  useEffect(
-    () => () => {
-      if (window.jQuery) {
-        unslickAll(window.jQuery);
-      }
-    },
-    []
-  );
 }
 
 export default useCargonInit;

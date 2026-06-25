@@ -48,22 +48,6 @@ const CandidatureForm = () => {
   const fileInputRef = React.useRef(null);
   const motivationFileInputRef = React.useRef(null);
 
-  React.useEffect(() => {
-    if (typeof window === "undefined" || !window.jQuery?.fn?.niceSelect) {
-      return;
-    }
-
-    const $ = window.jQuery;
-    const $selects = $(".ca-candidature-form select");
-
-    $selects.each(function destroyNiceSelect() {
-      const $el = $(this);
-      if ($el.next().hasClass("nice-select")) {
-        $el.niceSelect("destroy");
-      }
-    });
-  }, []);
-
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setForm((prev) => ({

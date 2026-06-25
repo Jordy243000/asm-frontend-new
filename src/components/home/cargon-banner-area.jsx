@@ -93,9 +93,20 @@ const CargonBannerArea = ({ bannerData = [], dataReady = false }) => {
 
   useEffect(() => {
     return () => {
-      if (window.jQuery) {
-        unslickHeroSlider(window.jQuery);
+      if (!window.jQuery) {
+        return;
       }
+
+      const $ = window.jQuery;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          try {
+            unslickHeroSlider($);
+          } catch {
+            // ignore
+          }
+        });
+      });
     };
   }, []);
 
