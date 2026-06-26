@@ -7,6 +7,7 @@ import "react-photo-view/dist/react-photo-view.css";
 import "@/assets/cargon-overrides.css";
 
 import Dependency from "@/components/utilities/Dependency";
+import SiteShell from "@/components/Layouts/site-shell";
 import { ToastContainer } from "react-toastify";
 
 export const metadata = {
@@ -104,7 +105,7 @@ export default function RootLayout({ children }) {
       <body className="cargon-theme cargon-index-2">
         <ToastContainer />
         <Dependency />
-        {children}
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   );

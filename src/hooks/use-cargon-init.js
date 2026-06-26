@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 
 const SLICK_SELECTORS = [
   ".slider-nav",
@@ -16,20 +16,13 @@ const HERO_SLICK_SELECTORS = [".slider-for", ".slider-nav"];
 /** Instances Slick encore en mémoire après destruction du DOM React */
 const trackedSlickInstances = new Set();
 
-function deferDomPluginCleanup(callback) {
-  if (typeof window === "undefined") {
+function runSlickCleanup($) {
+  if (!$?.fn?.slick) {
     return;
   }
 
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      try {
-        callback();
-      } catch {
-        // Le DOM peut déjà être démonté par React.
-      }
-    });
-  });
+  clearAllSlickAutoplay($);
+  unslickAll($);
 }
 
 function initAos() {
@@ -279,6 +272,22 @@ function initCargonPlugins(mode = "full") {
 export function useCargonInit(deps = []) {
   const mode = deps.includes("base") ? "base" : "full";
 
+  useLayoutEffect(() => {
+    if (mode !== "full") {
+      return undefined;
+    }
+
+    return () => {
+      if (window.jQuery) {
+        try {
+          runSlickCleanup(window.jQuery);
+        } catch {
+          // ignore
+        }
+      }
+    };
+  }, deps);
+
   useEffect(() => {
     let attempts = 0;
     let timer;
@@ -332,13 +341,6 @@ export function useCargonInit(deps = []) {
       clearTimeout(timer);
       cancelAnimationFrame(rafId);
       window.removeEventListener("cargon:plugins-ready", onPluginsReady);
-      if (mode === "full" && window.jQuery) {
-        const $ = window.jQuery;
-        deferDomPluginCleanup(() => {
-          clearAllSlickAutoplay($);
-          unslickAll($);
-        });
-      }
     };
   }, deps);
 }

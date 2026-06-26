@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { memo, useEffect, useMemo } from "react";
+import React, { memo, useLayoutEffect, useMemo } from "react";
 import { unslickHeroSlider } from "@/hooks/use-cargon-init";
 import { mapBannerSlides } from "@/utils/banner-helpers";
 
@@ -91,22 +91,15 @@ const CargonBannerArea = ({ bannerData = [], dataReady = false }) => {
     [bannerData, dataReady]
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     return () => {
-      if (!window.jQuery) {
-        return;
+      if (window.jQuery) {
+        try {
+          unslickHeroSlider(window.jQuery);
+        } catch {
+          // ignore
+        }
       }
-
-      const $ = window.jQuery;
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          try {
-            unslickHeroSlider($);
-          } catch {
-            // ignore
-          }
-        });
-      });
     };
   }, []);
 
