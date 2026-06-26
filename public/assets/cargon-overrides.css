@@ -2143,6 +2143,12 @@
   color: var(--asm-green) !important;
 }
 
+/* Navigation SPA : éviter le contenu invisible (AOS non rafraîchi) sur les pages internes */
+.cargon-inner-page [data-aos] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 /* Preloader — logo ASM (remplace le spinner du thème Cargon) */
 .preloader-logo-wrap {
   perspective: 720px;

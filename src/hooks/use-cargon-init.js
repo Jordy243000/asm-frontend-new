@@ -35,8 +35,30 @@ function initAos() {
     return;
   }
 
-  window.AOS.init({ disable: "mobile", once: true, duration: 800 });
+  window.AOS.init({
+    disable: "mobile",
+    once: true,
+    duration: 800,
+    startEvent: "DOMContentLoaded",
+  });
   window.__cargonAosInitialized = true;
+}
+
+export function refreshAos() {
+  if (typeof window === "undefined" || !window.AOS) {
+    return;
+  }
+
+  if (!window.__cargonAosInitialized) {
+    initAos();
+    return;
+  }
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      window.AOS.refresh();
+    });
+  });
 }
 
 function pauseSlickInstance(instance) {
