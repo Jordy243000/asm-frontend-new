@@ -3,9 +3,19 @@
 import Image from "next/image";
 import Logo from "@/assets/img/logo/logo.png";
 
-const CargonLoader = () => {
+const CargonLoader = ({ phase = "visible" }) => {
+  if (phase === "hidden") {
+    return null;
+  }
+
   return (
-    <div id="preloader">
+    <div
+      id="preloader"
+      className={`asm-preloader asm-preloader--${phase}`}
+      role="status"
+      aria-live="polite"
+      aria-label="Chargement en cours"
+    >
       <div id="ctn-preloader" className="ctn-preloader">
         <div className="animation-preloader">
           <div className="preloader-logo-wrap">

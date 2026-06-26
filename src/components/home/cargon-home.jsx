@@ -8,8 +8,10 @@ import CargonContactInfo from "./cargon-contact-info";
 import CargonBlogSection from "./cargon-blog-section";
 import CargonServiceCta from "./cargon-service-cta";
 import CargonWorkProcess from "./cargon-work-process";
+import HomeProductsSection from "./home-products-section";
 import { useAboutContent } from "@/hooks/use-about-content";
 import { useCargonInit } from "@/hooks/use-cargon-init";
+import { useReportPageReady } from "@/context/page-transition-provider";
 import { useSiteContent } from "@/context/site-content-provider";
 import { BANNER_POPULATE_QUERY } from "@/utils/banner-helpers";
 import {
@@ -59,11 +61,11 @@ const CargonHome = () => {
   const { homePage } = useSiteContent();
   const [bannerData, setBannerData] = useState([]);
   const [serviceData, setServiceData] = useState([]);
-  const [productData, setProductData] = useState([]);
   const [blogData, setBlogData] = useState([]);
   const [numberData, setNumberData] = useState([]);
   const [testimonialData, setTestimonialData] = useState([]);
   const [ready, setReady] = useState(false);
+  const [pluginsReady, setPluginsReady] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -71,14 +73,12 @@ const CargonHome = () => {
         const [
           bannerRes,
           servicesRes,
-          productsRes,
           numbersRes,
           testimonialsRes,
           blogs,
         ] = await Promise.all([
           axios.get(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/banners?${BANNER_POPULATE_QUERY}`),
           axios.get(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/services?populate=*`),
-          axios.get(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/products?populate[photo]=*&populate[menuLinks]=*&pagination[pageSize]=4`),
           axios.get(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/bignumbers?populate=*`),
           axios.get(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/testimonials?populate=*`),
           fetchHomeBlogs(),
@@ -86,7 +86,6 @@ const CargonHome = () => {
 
         setBannerData(bannerRes?.data?.data || []);
         setServiceData(servicesRes?.data?.data || []);
-        setProductData(productsRes?.data?.data || []);
         setBlogData(blogs);
         setNumberData(numbersRes?.data?.data || []);
         setTestimonialData(testimonialsRes?.data?.data || []);
@@ -104,14 +103,24 @@ const CargonHome = () => {
     ? bannerData.map((entry) => entry.id).join("-") || "fallback"
     : "loading";
 
-  useCargonInit([
-    bannerKey,
-    serviceData.length,
-    productData.length,
-    blogData.length,
-    testimonialData.length,
-    numberData.length,
-  ]);
+  useEffect(() => {
+    setPluginsReady(false);
+  }, [bannerKey]);
+
+  useCargonInit(
+    [
+      bannerKey,
+      serviceData.length,
+      blogData.length,
+      testimonialData.length,
+      numberData.length,
+    ],
+    {
+      onReady: () => setPluginsReady(true),
+    }
+  );
+
+  useReportPageReady(ready && pluginsReady);
 
   return (
     <main className="cargon-home-index-2">
@@ -248,65 +257,7 @@ const CargonHome = () => {
 
       <CargonServiceCta />
 
-      {productData.length > 0 ? (
-        <section className="ca-portfilo-2 pt-100 pb-70">
-          <div className="container">
-            <div className="ca-portfolio-content-2 ca-sec-content-2 text-center mb-60" data-aos="fade-up">
-              <h5 className="ca-section-subtitle subtitle-bg-4 p-relative theme-color-2">
-                {homePage.productsSubtitle}
-              </h5>
-              <h2 className="ca-section-title theme-black-2 fnw-600 pt-16 ca-text-cap">
-                {homePage.productsTitle}
-              </h2>
-              <p className="pt-16">{homePage.productsDescription}</p>
-            </div>
-            <div className="row">
-              {productData.map((item, index) => {
-                const photo = item?.attributes?.photo?.data?.attributes?.url
-                  ? `${process.env.NEXT_PUBLIC_ASSETS_ORIGIN}${item.attributes.photo.data.attributes.url}`
-                  : `/cargon/img/portfolio/project-2.${(index % 4) + 1}.png`;
-
-                return (
-                  <div
-                    key={item.id}
-                    className="col-lg-4 col-md-6 mb-30"
-                    data-aos="zoom-out"
-                    data-aos-delay={index * 100}
-                  >
-                    <div className="ca-portfolio-2-item p-relative z-index-1 fix">
-                      <img className="w-100" src={photo} alt={item?.attributes?.title} />
-                      <div className="ca-portfolio-2-overlay-content p-absolute">
-                        <Link href={`/products?open=${item?.attributes?.slug || item.id}`} className="ca-port-2-icon">
-                          <span>
-                            <img src="/cargon/img/icon/arrow-2.1.svg" alt="" />
-                          </span>
-                        </Link>
-                        <div className="ca-port-2-desg">
-                          <p className="fnw-600 pt-24 pb-16">Solution ASM</p>
-                        </div>
-                        <div className="ca-port-2-content">
-                          <h4 className="ca-title fnw-600 text-white pb-16">
-                            <Link href={`/products?open=${item?.attributes?.slug || item.id}`}>{item?.attributes?.title}</Link>
-                          </h4>
-                          <p>{truncateText(item?.attributes?.description, 90)}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-            <div className="text-center pt-20" data-aos="fade-up">
-              <Link href={homePage.productsButtonLink} className="ca-btn-primary-22">
-                {homePage.productsButtonText}{" "}
-                <span>
-                  <i className="fa-solid fa-arrow-right"></i>
-                </span>
-              </Link>
-            </div>
-          </div>
-        </section>
-      ) : null}
+      <HomeProductsSection />
 
       <CargonWorkProcess />
 

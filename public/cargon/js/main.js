@@ -556,20 +556,9 @@ $('.ca-brand-slides-2').slick({
 
 
 
-  	// preloader js
-	function loader() {
-		$(window).on('load', function () {
-			$('#ctn-preloader').addClass('loaded');
-			$("#loading").fadeOut(500);
-
-			if ($('#ctn-preloader').hasClass('loaded')) {
-				$('#preloader').delay(900).queue(function () {
-					$(this).remove();
-				});
-			}
-		});
-	}
-	loader();
+  	// preloader géré par React (PageTransitionProvider) — ne pas supprimer #preloader
+	// function loader() { ... }
+	// loader();
 
 
   

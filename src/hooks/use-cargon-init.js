@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 
 const SLICK_SELECTORS = [
   ".slider-nav",
@@ -57,8 +57,45 @@ export function refreshAos() {
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       window.AOS.refresh();
+      forceAosVisible();
     });
   });
+}
+
+/** Évite le contenu invisible après navigation SPA (AOS laisse opacity: 0). */
+export function forceAosVisible(root) {
+  if (typeof document === "undefined") {
+    return;
+  }
+
+  const scope = root?.querySelectorAll ? root : document;
+  scope.querySelectorAll("[data-aos]").forEach((element) => {
+    element.classList.add("aos-animate");
+  });
+}
+
+const PRELOADER_FADE_MS = 500;
+
+export function showNavigationPreloader() {
+  if (typeof window === "undefined" || !window.jQuery) {
+    return;
+  }
+
+  const $preloader = window.jQuery("#preloader");
+  if (!$preloader.length) {
+    return;
+  }
+
+  $preloader.stop(true, true).css({ display: "block", opacity: 1 });
+  window.jQuery("#ctn-preloader").removeClass("loaded");
+}
+
+export function hideNavigationPreloader() {
+  if (typeof window === "undefined" || !window.jQuery) {
+    return;
+  }
+
+  window.jQuery("#preloader").fadeOut(PRELOADER_FADE_MS);
 }
 
 function pauseSlickInstance(instance) {
@@ -291,8 +328,11 @@ function initCargonPlugins(mode = "full") {
   return true;
 }
 
-export function useCargonInit(deps = []) {
+export function useCargonInit(deps = [], options = {}) {
   const mode = deps.includes("base") ? "base" : "full";
+  const onReadyRef = useRef(options.onReady);
+
+  onReadyRef.current = options.onReady;
 
   useLayoutEffect(() => {
     if (mode !== "full") {
@@ -322,13 +362,22 @@ export function useCargonInit(deps = []) {
       }
 
       if (initCargonPlugins(mode)) {
+        if (mode === "full") {
+          forceAosVisible();
+          onReadyRef.current?.();
+        }
         return;
       }
 
       attempts += 1;
-      if (attempts < 60) {
-        timer = setTimeout(tryInit, 200);
+      if (attempts >= 60) {
+        if (mode === "full") {
+          onReadyRef.current?.();
+        }
+        return;
       }
+
+      timer = setTimeout(tryInit, 200);
     };
 
     const scheduleInit = () => {

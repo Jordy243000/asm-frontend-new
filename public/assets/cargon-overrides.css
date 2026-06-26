@@ -2143,10 +2143,51 @@
   color: var(--asm-green) !important;
 }
 
-/* Navigation SPA : éviter le contenu invisible (AOS non rafraîchi) sur les pages internes */
-.cargon-inner-page [data-aos] {
+/* Navigation SPA : éviter le contenu invisible (AOS non rafraîchi) */
+.cargon-inner-page [data-aos],
+.cargon-home-index-2 [data-aos] {
   opacity: 1 !important;
   transform: none !important;
+}
+
+/* Hero : une seule slide visible avant initialisation Slick (évite l'espace blanc) */
+.slider-for:not(.slick-initialized) > div:not(:first-child) {
+  display: none !important;
+}
+
+.slider-nav:not(.slick-initialized) > div:not(:first-child) {
+  display: none !important;
+}
+
+.ca-hero-2-slider--loading .slider-text {
+  min-height: min(72vh, 640px);
+  background: linear-gradient(135deg, #0b1f3a 0%, #1a4a7a 100%);
+}
+
+/* Preloader React — visible à chaque navigation */
+body.asm-page-loading {
+  overflow: hidden;
+}
+
+.asm-page-content:not(.asm-page-content--ready) {
+  visibility: hidden;
+}
+
+.asm-page-content--ready {
+  visibility: visible;
+}
+
+#preloader.asm-preloader {
+  display: block !important;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#preloader.asm-preloader--hiding {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 /* Preloader — logo ASM (remplace le spinner du thème Cargon) */
