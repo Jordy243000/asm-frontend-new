@@ -186,7 +186,7 @@ const CargonHeader = () => {
             </div>
             <div className="col-lg-6 d-none d-lg-block">
               <div className="ca-main-menu-2">
-                <nav className="ca-mobile-menu-active-2">
+                <nav className="ca-desktop-menu-2">
                   <ul>{menuItems.map(renderDesktopItem)}</ul>
                 </nav>
               </div>

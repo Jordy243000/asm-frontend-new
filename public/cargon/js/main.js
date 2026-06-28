@@ -47,26 +47,10 @@
 });
 
 
-// mobile menu 2
-  var caMenuWrap2 = $('.ca-mobile-menu-active-2 > ul').clone();
-  var caSideMenu2 = $('.ca-offcanvas-menu-2 nav');
-  caSideMenu2.append(caMenuWrap2);
-  if ($(caSideMenu2).find('.sub-menu, .ca-mega-menu').length != 0) {
-    $(caSideMenu2).find('.sub-menu, .ca-mega-menu').parent().append('<button class="ca-menu-close2"><i class="fas fa-chevron-right"></i></button>');
-  }
-
-  var sideMenuList2 = $('.ca-offcanvas-menu-2 nav > ul > li button.ca-menu-close2, .tp-offcanvas-menu-1 nav > ul li.has-dropdown > a');
-  $(sideMenuList2).on('click', function (e) {
-    console.log(e);
-    e.preventDefault();
-    if (!($(this).parent().hasClass('active'))) {
-      $(this).parent().addClass('active');
-      $(this).siblings('.sub-menu, .ca-mega-menu').slideDown();
-    } else {
-      $(this).siblings('.sub-menu, .ca-mega-menu').slideUp();
-      $(this).parent().removeClass('active');
-    }
-  });
+// mobile menu 2 — géré par React (cargon-header.jsx), ne pas cloner le menu desktop
+  // var caMenuWrap2 = $('.ca-mobile-menu-active-2 > ul').clone();
+  // var caSideMenu2 = $('.ca-offcanvas-menu-2 nav');
+  // caSideMenu2.append(caMenuWrap2);
 
 
   $(".ca-offcanvas-toogle").on('click', function(){
