@@ -11,7 +11,7 @@ import React, {
 } from "react";
 import { usePathname } from "next/navigation";
 import CargonLoader from "@/components/Layouts/cargon/cargon-loader";
-import { refreshAos } from "@/hooks/use-cargon-init";
+import { resetAndRefreshAos } from "@/hooks/use-cargon-init";
 
 const MIN_VISIBLE_MS = 1400;
 const INNER_PAGE_READY_MS = 500;
@@ -80,12 +80,11 @@ export function PageTransitionProvider({ children }) {
 
     hideTimerRef.current = setTimeout(() => {
       setLoaderPhase("hiding");
-      refreshAos();
 
       hideTimerRef.current = setTimeout(() => {
         setLoaderPhase("hidden");
         document.body.classList.remove("asm-page-loading");
-        refreshAos();
+        resetAndRefreshAos();
       }, 520);
     }, remaining);
 
@@ -98,9 +97,6 @@ export function PageTransitionProvider({ children }) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    refreshAos();
-    const aosTimer = setTimeout(() => refreshAos(), 300);
-    return () => clearTimeout(aosTimer);
   }, [pathname]);
 
   const contextValue = useMemo(

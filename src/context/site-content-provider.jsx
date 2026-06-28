@@ -208,7 +208,11 @@ function mapNavigation(entries) {
     return menu;
   });
 
-  return mapped.length ? mapped : DEFAULT_NAVIGATION;
+  const filtered = mapped.filter(
+    (item) => item.link !== "/contact" && item.title !== "Contact"
+  );
+
+  return filtered.length ? filtered : DEFAULT_NAVIGATION;
 }
 
 const defaultContext = {

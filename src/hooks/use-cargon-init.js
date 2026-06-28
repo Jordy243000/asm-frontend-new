@@ -39,12 +39,22 @@ function initAos() {
     disable: "mobile",
     once: true,
     duration: 800,
-    startEvent: "DOMContentLoaded",
+    offset: 80,
+    startEvent: "load",
   });
   window.__cargonAosInitialized = true;
 }
 
-export function refreshAos() {
+function clearAosInlineStyles(element) {
+  element.style.removeProperty("opacity");
+  element.style.removeProperty("transform");
+  element.style.removeProperty("transition");
+  element.style.removeProperty("transition-delay");
+  element.style.removeProperty("transition-duration");
+}
+
+/** Réinitialise AOS pour permettre les animations au scroll (navigation SPA). */
+export function resetAndRefreshAos() {
   if (typeof window === "undefined" || !window.AOS) {
     return;
   }
@@ -54,23 +64,53 @@ export function refreshAos() {
     return;
   }
 
+  document.querySelectorAll("[data-aos]").forEach((element) => {
+    element.classList.remove("aos-animate");
+    clearAosInlineStyles(element);
+  });
+
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      window.AOS.refresh();
-      forceAosVisible();
+      if (typeof window.AOS.refreshHard === "function") {
+        window.AOS.refreshHard();
+      } else {
+        window.AOS.refresh();
+      }
+      scheduleInnerPageAosFallback();
     });
   });
 }
 
-/** Évite le contenu invisible après navigation SPA (AOS laisse opacity: 0). */
+function scheduleInnerPageAosFallback() {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  clearTimeout(window.__cargonAosFallbackTimer);
+  window.__cargonAosFallbackTimer = setTimeout(() => {
+    document
+      .querySelectorAll(".cargon-inner-page [data-aos]:not(.aos-animate)")
+      .forEach((element) => {
+        element.classList.add("aos-animate");
+        clearAosInlineStyles(element);
+      });
+  }, 2200);
+}
+
+export function refreshAos() {
+  resetAndRefreshAos();
+}
+
+/** Secours pages internes uniquement — ne pas utiliser sur l'accueil (casse les animations). */
 export function forceAosVisible(root) {
   if (typeof document === "undefined") {
     return;
   }
 
   const scope = root?.querySelectorAll ? root : document;
-  scope.querySelectorAll("[data-aos]").forEach((element) => {
+  scope.querySelectorAll(".cargon-inner-page [data-aos]").forEach((element) => {
     element.classList.add("aos-animate");
+    clearAosInlineStyles(element);
   });
 }
 
@@ -363,7 +403,6 @@ export function useCargonInit(deps = [], options = {}) {
 
       if (initCargonPlugins(mode)) {
         if (mode === "full") {
-          forceAosVisible();
           onReadyRef.current?.();
         }
         return;

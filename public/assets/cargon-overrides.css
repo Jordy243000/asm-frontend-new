@@ -41,6 +41,56 @@
   pointer-events: none;
 }
 
+.cargon-index-2 .ca-hero-story-slide {
+  background: #0b1f3a;
+}
+
+.cargon-index-2 .ca-hero-story-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(6, 18, 38, 0.82) 0%,
+    rgba(6, 18, 38, 0.45) 55%,
+    rgba(6, 18, 38, 0.2) 100%
+  );
+}
+
+.cargon-index-2 .ca-hero-story-text {
+  animation: ca-hero-story-fade-in 0.65s ease both;
+}
+
+@keyframes ca-hero-story-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cargon-index-2 .ca-hero-thumb--video::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230b1f3a'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E")
+    center/16px 16px no-repeat;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.cargon-index-2 .ca-hero-thumb--video {
+  position: relative;
+}
+
 .cargon-index-2 .slider-text.slider-2 > .container {
   position: relative;
   z-index: 2;
@@ -2143,11 +2193,16 @@
   color: var(--asm-green) !important;
 }
 
-/* Navigation SPA : éviter le contenu invisible (AOS non rafraîchi) */
-.cargon-inner-page [data-aos],
-.cargon-home-index-2 [data-aos] {
-  opacity: 1 !important;
-  transform: none !important;
+/* Navigation SPA : secours si AOS bloque le contenu sur les pages internes */
+.cargon-inner-page [data-aos]:not(.aos-animate) {
+  animation: asm-aos-unstick 0.01s 2.2s forwards;
+}
+
+@keyframes asm-aos-unstick {
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* Hero : une seule slide visible avant initialisation Slick (évite l'espace blanc) */

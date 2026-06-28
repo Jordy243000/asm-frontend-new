@@ -13,7 +13,6 @@ export const cargonMenu = [
   { title: "Blog", link: "/blog" },
   { title: "Équipe", link: "/equipe" },
   { title: "À propos", link: "/about" },
-  { title: "Contact", link: "/contact" },
 ];
 
 export const isMenuActive = (pathname, menu) => {

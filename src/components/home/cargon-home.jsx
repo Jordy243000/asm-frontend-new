@@ -10,7 +10,7 @@ import CargonServiceCta from "./cargon-service-cta";
 import CargonWorkProcess from "./cargon-work-process";
 import HomeProductsSection from "./home-products-section";
 import { useAboutContent } from "@/hooks/use-about-content";
-import { useCargonInit } from "@/hooks/use-cargon-init";
+import { useCargonInit, resetAndRefreshAos } from "@/hooks/use-cargon-init";
 import { useReportPageReady } from "@/context/page-transition-provider";
 import { useSiteContent } from "@/context/site-content-provider";
 import { BANNER_POPULATE_QUERY } from "@/utils/banner-helpers";
@@ -121,6 +121,15 @@ const CargonHome = () => {
   );
 
   useReportPageReady(ready && pluginsReady);
+
+  useEffect(() => {
+    if (!ready || !pluginsReady) {
+      return undefined;
+    }
+
+    const timer = setTimeout(() => resetAndRefreshAos(), 150);
+    return () => clearTimeout(timer);
+  }, [ready, pluginsReady]);
 
   return (
     <main className="cargon-home-index-2">
